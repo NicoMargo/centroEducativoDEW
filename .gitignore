@@ -29,3 +29,55 @@ replay_pid*
 /conf/
 /webapps/**/WEB-INF/classes/
 /webapps/**/WEB-INF/lib/
+
+# --- Eclipse IDE ---
+.project
+.classpath
+.settings/
+.recommenders/
+
+# --- IntelliJ IDEA ---
+.idea/
+*.iml
+*.iws
+/out/
+
+# --- NetBeans IDE ---
+nbproject/private/
+nbbuild/
+dist/
+build/
+
+# --- Maven wrapper files (si usas Maven Wrapper) ---
+.mvn/
+mvnw*
+mvnw.cmd
+
+# --- Gradle wrapper files (si usas Gradle Wrapper) ---
+.gradle/
+gradlew*
+gradlew.bat
+
+# --- Mobile Tools for Java (J2ME) ---
+.mtj.tmp/
+
+# --- BlueJ files ---
+*.ctxt
+
+# --- OS-specific files ---
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# --- Optional: environment files, secrets ---
+.env
+*.properties
