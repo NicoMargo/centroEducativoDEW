@@ -1,83 +1,22 @@
-# --- Compiled class files and logs ---
+# IDE / build
+.classpath
+.project
+.settings/
+target/
+build/
+out/
+
+# Tomcat
+logs/
+work/
+temp/
+
+# binarios y paquetes
 *.class
+*.war
+*.jar
 *.log
 
-# --- Crash logs ---
-hs_err_pid*
-replay_pid*
-
-# --- Package files ---
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# --- Build output ---
-/target/
-/build/
-/out/
-/dist/
-/bin/
-
-# --- Tomcat artifacts (si incluyes Tomcat dentro del proyecto) ---
-/logs/
-/work/
-/temp/
-/conf/
-/webapps/**/WEB-INF/classes/
-/webapps/**/WEB-INF/lib/
-
-# --- Eclipse IDE ---
-.project
-.classpath
-.settings/
-.recommenders/
-
-# --- IntelliJ IDEA ---
-.idea/
-*.iml
-*.iws
-/out/
-
-# --- NetBeans IDE ---
-nbproject/private/
-nbbuild/
-dist/
-build/
-
-# --- Maven wrapper files (si usas Maven Wrapper) ---
-.mvn/
-mvnw*
-mvnw.cmd
-
-# --- Gradle wrapper files (si usas Gradle Wrapper) ---
-.gradle/
-gradlew*
-gradlew.bat
-
-# --- Mobile Tools for Java (J2ME) ---
-.mtj.tmp/
-
-# --- BlueJ files ---
-*.ctxt
-
-# --- OS-specific files ---
-# macOS
+# OS
 .DS_Store
-.AppleDouble
-.LSOverride
-
-# Windows
 Thumbs.db
-ehthumbs.db
-Desktop.ini
-
-# Linux
-*~
-
-# --- Optional: environment files, secrets ---
-.env
-*.properties
