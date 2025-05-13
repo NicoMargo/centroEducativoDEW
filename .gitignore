@@ -1,1 +1,42 @@
+# --- Java build artifacts ---
+/**/*.class
+/*.log
+hs_err_pid*
+replay_pid*
 
+# --- Maven / Gradle ---
+/target/
+/build/
+/out/
+/.gradle/
+/.mvn/
+
+# --- IDEs ---
+# Eclipse
+/.settings/
+/*.classpath
+/*.project
+
+# IntelliJ
+/.idea/
+/*.iml
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+
+# VS Code
+/.vscode/
+
+# --- Tomcat temp & logs (si los tienes dentro del repo) ---
+/logs/
+/work/
+/temp/
+/conf/
+/webapps/**/WEB-INF/classes/
+/webapps/**/WEB-INF/lib/
+
+# --- SO ---
+.DS_Store
+Thumbs.db
