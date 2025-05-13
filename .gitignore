@@ -1,16 +1,12 @@
-# Compiled class file
+# --- Compiled class files and logs ---
 *.class
-
-# Log file
 *.log
 
-# BlueJ files
-*.ctxt
+# --- Crash logs ---
+hs_err_pid*
+replay_pid*
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
+# --- Package files ---
 *.jar
 *.war
 *.nar
@@ -19,6 +15,17 @@
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+# --- Build output ---
+/target/
+/build/
+/out/
+/dist/
+/bin/
+
+# --- Tomcat artifacts (si incluyes Tomcat dentro del proyecto) ---
+/logs/
+/work/
+/temp/
+/conf/
+/webapps/**/WEB-INF/classes/
+/webapps/**/WEB-INF/lib/
