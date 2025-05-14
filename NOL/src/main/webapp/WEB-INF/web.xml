@@ -2,8 +2,8 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" id="WebApp_ID" version="6.0">
   <display-name>NOL</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.html</welcome-file>    
     <welcome-file>index.htm</welcome-file>
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.jsp</welcome-file>
@@ -19,4 +19,26 @@
 <servlet-name>AlumnoServlet</servlet-name>
 <url-pattern>/alumno</url-pattern>
 </servlet-mapping>
+
+
+<context-param>
+    <param-name>centro.baseUrl</param-name>
+    <param-value>http://localhost:9090/CentroEducativo</param-value>
+</context-param>
+
+  
+    <!-- Credenciales fijas -->
+  <context-param>
+    <param-name>centro.loginDni</param-name>
+    <param-value>111111111</param-value>
+  </context-param>
+  <context-param>
+    <param-name>centro.loginPassword</param-name>
+    <param-value>654321</param-value>
+  </context-param>
+  
+    <listener>
+    <listener-class>dew.loginCentro.StartupListener</listener-class>
+  </listener>
+
 </web-app>

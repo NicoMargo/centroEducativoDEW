@@ -7,12 +7,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import dew.services.AlumnoService;
+
 /**
  * Servlet implementation class AlumnoServlet
  */
 @WebServlet("/AlumnoServlet")
 public class AlumnoServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	
+	private AlumnoService alumnoService;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -22,12 +25,18 @@ public class AlumnoServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+    @Override
+    public void init() throws ServletException {
+        // instanciamos el helper usando el ServletContext para leer los context-params
+    	alumnoService = new AlumnoService(getServletContext());
+    }
+    
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: XD").append(request.getContextPath());
+		String jsonAlumnos = alumnoService.getAlumnos();
+		response.getWriter().append(jsonAlumnos).append(request.getContextPath());
 	}
 
 	/**
