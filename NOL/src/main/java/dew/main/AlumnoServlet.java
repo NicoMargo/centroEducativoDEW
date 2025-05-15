@@ -1,50 +1,35 @@
 package dew.main;
 
+import dew.service.CentroClient;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 
-import dew.services.AlumnoService;
-
-/**
- * Servlet implementation class AlumnoServlet
- */
-@WebServlet("/AlumnoServlet")
 public class AlumnoServlet extends HttpServlet {
-	
-	private AlumnoService alumnoService;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AlumnoServlet() {
-        super();
-        // TODO Auto-generated constructor stub
+    private CentroClient client;
+
+    @Override
+    public void init() {
+        String baseUrl = getServletContext().getInitParameter("centro.baseUrl");
+        client = new CentroClient(baseUrl);
     }
 
     @Override
-    public void init() throws ServletException {
-        // instanciamos el helper usando el ServletContext para leer los context-params
-    	alumnoService = new AlumnoService(getServletContext());
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        String apiKey = (String) req.getSession().getAttribute("apiKey");
+        if (apiKey == null) {
+            resp.sendError(HttpServletResponse.SC_UNAUTHORIZED,
+                           "No autenticado con CentroEducativo");
+            return;
+        }
+
+        String json = client.getAlumnos(apiKey);
+        resp.setContentType("application/json;charset=UTF-8");
+        resp.getWriter().write(json);
     }
-    
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String jsonAlumnos = alumnoService.getAlumnos();
-		response.getWriter().append(jsonAlumnos).append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

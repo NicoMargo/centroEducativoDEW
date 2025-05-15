@@ -1,5 +1,5 @@
 // src/main/java/dew/service/CentroClient.java
-package dew.services;
+package dew.service;
 
 import java.io.*;
 import java.net.*;
