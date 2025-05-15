@@ -1,73 +1,74 @@
 package dew.filter;
 
+import dew.service.AuthResult;
 import dew.service.CentroClient;
-import jakarta.servlet.Filter;
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.FilterConfig;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
-import jakarta.servlet.annotation.WebFilter;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
+import java.io.InputStream;
+import java.util.Properties;
 
-@WebFilter("/*")
+/**
+ * Filter que:
+ *  1) Espera a que Tomcat autentique web (getRemoteUser())
+ *  2) Usa credentials.properties para password
+ *  3) Llama a CentroClient.login() → apiKey + sessionCookie
+ *  4) Guarda en HttpSession solo apiKey y sessionCookie
+ */
 public class DataAuthFilter implements Filter {
     private String baseUrl;
+    private Properties creds;
 
     @Override
-    public void init(FilterConfig cfg) {
+    public void init(FilterConfig cfg) throws ServletException {
         baseUrl = cfg.getServletContext().getInitParameter("centro.baseUrl");
-        System.out.println("[DataAuthFilter] init with baseUrl=" + baseUrl);
+        creds   = new Properties();
+        try (InputStream in = cfg.getServletContext()
+               .getResourceAsStream("/WEB-INF/credentials.properties")) {
+            if (in == null) throw new ServletException("Missing credentials.properties");
+            creds.load(in);
+        } catch (IOException e) {
+            throw new ServletException("Error loading credentials", e);
+        }
     }
 
     @Override
-    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
+    public void doFilter(ServletRequest rq, ServletResponse rs, FilterChain chain)
             throws IOException, ServletException {
-        HttpServletRequest  request  = (HttpServletRequest) req;
-        HttpServletResponse response = (HttpServletResponse) res;
-        String uri = request.getRequestURI();
-        System.out.println("[DataAuthFilter] Incoming: " + request.getMethod() + " " + uri);
+        HttpServletRequest  req  = (HttpServletRequest)  rq;
+        HttpServletResponse res  = (HttpServletResponse) rs;
+        HttpSession session = req.getSession(true);
 
-        // Permitir que FORM-LOGIN procese j_security_check
-        if (uri.endsWith("j_security_check")) {
-            System.out.println("[DataAuthFilter] skipping j_security_check");
-            chain.doFilter(req, res);
-            return;
-        }
-
-        HttpSession session = request.getSession(true);
-        if (session.getAttribute("apiKey") == null) {
-            String user = request.getRemoteUser();
-            System.out.println("[DataAuthFilter] remoteUser=" + user);
-            if (user != null) {
-                // obtener password del formulario
-                String pwd = request.getParameter("j_password");
-                System.out.println("[DataAuthFilter] obtained pwd for " + user);
-                try {
-                    CentroClient client = new CentroClient(baseUrl);
-                    String apiKey = client.login(user, pwd);
-                    session.setAttribute("apiKey", apiKey);
-                    System.out.println("[DataAuthFilter] stored apiKey=" + apiKey);
-                } catch (IOException e) {
-                    System.err.println("[DataAuthFilter] data auth failed: " + e.getMessage());
-                    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Data auth failed");
-                    return;
-                }
+        // Si no hay apiKey/cacheCookie en sesión y el usuario web está logeado:
+        if (session.getAttribute("apiKey") == null && req.getRemoteUser() != null) {
+            String user = req.getRemoteUser();
+            String pass = creds.getProperty(user);
+            if (pass == null) {
+                res.sendError(HttpServletResponse.SC_UNAUTHORIZED,
+                    "No REST credential for user " + user);
+                return;
             }
-        } else {
-            System.out.println("[DataAuthFilter] apiKey in session: " + session.getAttribute("apiKey"));
+
+            // 1) Login REST
+            CentroClient client = CentroClient.getInstance(baseUrl);
+            AuthResult auth;
+            try {
+                auth = client.login(user, pass);
+            } catch (IOException e) {
+                res.sendError(HttpServletResponse.SC_UNAUTHORIZED,
+                    "Data auth failed: " + e.getMessage());
+                return;
+            }
+
+            // 2) Guardar apiKey y sessionCookie en HttpSession
+            session.setAttribute("apiKey",       auth.getApiKey());
+            session.setAttribute("sessionCookie", auth.getSessionCookie());
+            session.setAttribute("dni", user);
         }
-        chain.doFilter(req, res);
+
+        chain.doFilter(rq, rs);
     }
 
     @Override
-    public void destroy() {
-        System.out.println("[DataAuthFilter] destroy");
-    }
+    public void destroy() {}
 }

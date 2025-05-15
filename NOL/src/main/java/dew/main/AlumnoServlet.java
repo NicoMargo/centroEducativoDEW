@@ -3,32 +3,36 @@ package dew.main;
 import dew.service.CentroClient;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
+import jakarta.servlet.http.*;
 import java.io.IOException;
 
+/**
+ * Devuelve JSON de alumnos usando apiKey y sessionCookie de sesión.
+ */
 public class AlumnoServlet extends HttpServlet {
-    private CentroClient client;
-
-    @Override
-    public void init() {
-        String baseUrl = getServletContext().getInitParameter("centro.baseUrl");
-        client = new CentroClient(baseUrl);
-    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        String apiKey = (String) req.getSession().getAttribute("apiKey");
-        if (apiKey == null) {
+        HttpSession session = req.getSession(false);
+        if (session == null) {
+            resp.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Sin sesión");
+            return;
+        }
+
+        String apiKey        = (String) session.getAttribute("apiKey");
+        String sessionCookie = (String) session.getAttribute("sessionCookie");
+        String dni 			 = (String) session.getAttribute("dni");
+        if (apiKey == null || sessionCookie == null || dni == null) {
             resp.sendError(HttpServletResponse.SC_UNAUTHORIZED,
                            "No autenticado con CentroEducativo");
             return;
         }
 
-        String json = client.getAlumnos(apiKey);
+        String baseUrl = getServletContext().getInitParameter("centro.baseUrl");
+        CentroClient client = CentroClient.getInstance(baseUrl);
+        String json = client.getAlumnoPorDNI(apiKey, sessionCookie, dni);
+
         resp.setContentType("application/json;charset=UTF-8");
         resp.getWriter().write(json);
     }
