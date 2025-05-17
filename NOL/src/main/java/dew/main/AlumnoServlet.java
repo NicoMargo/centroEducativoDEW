@@ -33,7 +33,8 @@ public class AlumnoServlet extends HttpServlet {
         CentroClient client = CentroClient.getInstance(baseUrl);
         String json = client.getAlumnoPorDNI(apiKey, sessionCookie, dni);
 
-        resp.setContentType("application/json;charset=UTF-8");
-        resp.getWriter().write(json);
+        //resp.setContentType("application/json;charset=UTF-8");
+        //resp.getWriter().write(json);
+        req.getRequestDispatcher("/alumno/perfilAlumno.jsp").forward(req, resp);
     }
 }
