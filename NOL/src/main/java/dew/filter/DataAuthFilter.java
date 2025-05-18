@@ -1,6 +1,6 @@
 package dew.filter;
 
-import dew.service.AuthResult;
+import dew.models.AuthResult;
 import dew.service.CentroClient;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;

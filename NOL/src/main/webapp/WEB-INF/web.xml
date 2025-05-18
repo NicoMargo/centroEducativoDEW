@@ -6,6 +6,7 @@
       https://jakarta.ee/xml/ns/jakartaee 
       https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
     version="6.0">
+
   <display-name>NOL</display-name>
 
   <!-- Parámetro global de la API REST -->
@@ -13,31 +14,68 @@
     <param-name>centro.baseUrl</param-name>
     <param-value>http://localhost:9090/CentroEducativo</param-value>
   </context-param>
-
-  <!-- Filtro de DataAuthFilter-->
-  <filter>
-  <filter-name>DataAuthFilter</filter-name>
-  <filter-class>dew.filter.DataAuthFilter</filter-class>
-</filter>
-<filter-mapping>
-  <filter-name>DataAuthFilter</filter-name>
-  <url-pattern>/*</url-pattern>
-</filter-mapping>/alumno
-
- 
   
-    <!-- Welcome pages -->
+   <!-- 1) LogsFilter: graba TODO, incluidos forwards a JSPs -->
+  <filter>
+    <filter-name>Logs</filter-name>
+    <filter-class>dew.filter.LogsFilter</filter-class>
+    <init-param>
+      <param-name>logFilePath</param-name>
+      <!-- RUTA RELATIVA dentro del WAR: -->
+      <param-value>WEB-INF/logs/accesos.log</param-value>
+    </init-param>
+    <init-param>
+      <param-name>loggingEnabled</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>Logs</filter-name>
+    <url-pattern>/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+    <dispatcher>FORWARD</dispatcher>
+  </filter-mapping>
+
+  <!-- 2) DataAuthFilter: sólo en rutas protegidas -->
+  <filter>
+    <filter-name>DataAuthFilter</filter-name>
+    <filter-class>dew.filter.DataAuthFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>DataAuthFilter</filter-name>
+    <url-pattern>/alumno/*</url-pattern>
+    <url-pattern>/asignatura/*</url-pattern>
+    <url-pattern>/asignaturas/*</url-pattern>
+    <dispatcher>REQUEST</dispatcher>
+  </filter-mapping>
+
+  <!-- Welcome pages -->
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
-    <welcome-file>index.html</welcome-file>
-    <!-- …otros… -->
   </welcome-file-list>
 
-  <!-- Seguridad sobre esos endpoints -->
+  <!-- Seguridad: sólo ALUMNO puede entrar en /alumno/* -->
   <security-constraint>
     <web-resource-collection>
-      <web-resource-name>Recursos Protegidos</web-resource-name>
+      <web-resource-name>Zona Alumno</web-resource-name>
+      <!-- protege /alumno y todo lo que cuelgue -->
       <url-pattern>/alumno</url-pattern>
+      <url-pattern>/alumno/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>rolalu</role-name>
+    </auth-constraint>
+  </security-constraint>
+
+  <!-- Seguridad: ambos roles pueden acceder a asignaturas -->
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Zona Asignatura</web-resource-name>
+      <url-pattern>/asignatura</url-pattern>
+      <url-pattern>/asignatura/*</url-pattern>
+      <!-- si usas /asignaturas añade aquí -->
+      <url-pattern>/asignaturas</url-pattern>
+      <url-pattern>/asignaturas/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>rolalu</role-name>
@@ -45,7 +83,7 @@
     </auth-constraint>
   </security-constraint>
 
-  <!-- FORM-LOGIN configurado a index.jsp -->
+  <!-- FORM-LOGIN configurado a login.jsp -->
   <login-config>
     <auth-method>FORM</auth-method>
     <form-login-config>
@@ -54,14 +92,22 @@
     </form-login-config>
   </login-config>
 
-  <!-- Roles lógicos -->
+  <!-- Declaración de roles -->
   <security-role>
     <role-name>rolalu</role-name>
   </security-role>
   <security-role>
     <role-name>rolpro</role-name>
   </security-role>
-  
-  
+
+  <!-- Páginas de error personalizadas -->
+  <error-page>
+    <error-code>401</error-code>
+    <location>/WEB-INF/jsp/error401.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/WEB-INF/jsp/error404.jsp</location>
+  </error-page>
 
 </web-app>

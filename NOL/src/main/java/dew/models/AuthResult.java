@@ -1,4 +1,4 @@
-package dew.service;
+package dew.models;
 
 /**
  * Resultado del login: apiKey + cookie de sesión (JSESSIONID=...).
