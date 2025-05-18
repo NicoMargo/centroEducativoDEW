@@ -1,0 +1,85 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f2f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+  
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+  
+header {
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+  
+h1 {
+    color: #343a40;
+    letter-spacing: 1px;
+    font-size: 1.8rem;
+}
+  
+h2 {
+    color: #495057;
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+}
+  
+.separator {
+    width: 80%;
+    height: 3px;
+    background-color: #6c757d;
+    margin: 1.5rem 0;
+    opacity: 0.3;
+    position: relative;
+}
+  
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.welcome-card {
+    max-width: 600px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    background-color: #fff;
+    border: none !important;
+}
+
+.welcome-card .card-body {
+    padding: 2.5rem;
+}
+
+.list-group-item {
+    border-left: none;
+    border-right: none;
+    padding: 0.8rem 1.2rem;
+}
+
+.list-group-item i {
+    width: 25px;
+}
+
+.btn-secondary {
+    background-color: #343a40;
+    border: none;
+    padding: 0.7rem 2rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-radius: 6px;
+}
+  
+.btn-secondary:hover {
+    background-color: #212529;
+}

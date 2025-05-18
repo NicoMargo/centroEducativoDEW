@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+      https://jakarta.ee/xml/ns/jakartaee 
+      https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+	version="6.0">
+	<display-name>NOL</display-name>
+
+	<!-- Parámetro global de la API REST -->
+	<context-param>
+		<param-name>centro.baseUrl</param-name>
+		<param-value>http://localhost:9090/CentroEducativo</param-value>
+	</context-param>
+
+	<!-- Filtro de DataAuthFilter -->
+	<filter>
+		<filter-name>DataAuthFilter</filter-name>
+		<filter-class>dew.filter.DataAuthFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>DataAuthFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+
+	<!-- Un único servlet-definition para AlumnoServlet -->
+	<!-- Servlets -->
+	<servlet>
+		<servlet-name>AlumnoServlet</servlet-name>
+		<servlet-class>dew.main.AlumnoServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AlumnoServlet</servlet-name>
+		<url-pattern>/alumno</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- Welcome pages -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.html</welcome-file>
+		<!-- …otros… -->
+	</welcome-file-list>
+
+	<!-- Seguridad sobre esos endpoints -->
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Recursos Protegidos</web-resource-name>
+			<url-pattern>/alumno</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>rolalu</role-name>
+			<role-name>rolpro</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<!-- FORM-LOGIN configurado a index.jsp -->
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<form-login-config>
+			<form-login-page>/login.jsp</form-login-page>
+			<form-error-page>/login.jsp?error=true</form-error-page>
+		</form-login-config>
+	</login-config>
+
+	<!-- Roles lógicos -->
+	<security-role>
+		<role-name>rolalu</role-name>
+	</security-role>
+	<security-role>
+		<role-name>rolpro</role-name>
+	</security-role>
+
+
+
+</web-app>
