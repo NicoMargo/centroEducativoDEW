@@ -22,20 +22,8 @@
 <filter-mapping>
   <filter-name>DataAuthFilter</filter-name>
   <url-pattern>/*</url-pattern>
-</filter-mapping>
+</filter-mapping>/alumno
 
-
-
-  <!-- Un único servlet-definition para AlumnoServlet -->
- <!-- Servlets -->
-<servlet>
-    <servlet-name>AlumnoServlet</servlet-name>
-    <servlet-class>dew.main.AlumnoServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AlumnoServlet</servlet-name>
-    <url-pattern>/alumno</url-pattern>
-  </servlet-mapping>
  
   
     <!-- Welcome pages -->

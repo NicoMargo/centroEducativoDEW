@@ -1,31 +1,41 @@
-// src/main/java/dew/service/CentroClient.java
 package dew.service;
 
-import java.io.*;
-import java.net.*;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import dew.models.Alumno;
+import dew.models.Asignatura;
+
 import jakarta.servlet.ServletContext;
+import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.List;
 
 public class AlumnoService {
-    private final String baseUrl;
-    private final String apiKey;
+  private static final Gson GSON = new Gson();
 
-    public AlumnoService(ServletContext ctx) {
-        this.baseUrl = ctx.getInitParameter("centro.baseUrl");
-        this.apiKey = (String)ctx.getAttribute("centro.apiKey");
-    }
+  public static Alumno fetchOne(ServletContext ctx, HttpSession ses)
+      throws IOException {
+    String apiKey        = (String) ses.getAttribute("apiKey");
+    String sessionCookie = (String) ses.getAttribute("sessionCookie");
+    String dni           = (String) ses.getAttribute("dni");
 
-    public String getAlumnos() throws IOException {
-        String endpoint = String.format("%s/alumnos?key=%s", baseUrl, apiKey);
-        HttpURLConnection conn = (HttpURLConnection) new URL(endpoint).openConnection();
-        conn.setRequestMethod("GET");
-        conn.setRequestProperty("Accept", "application/json");
-        try (InputStream in = conn.getInputStream();
-             BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while((line = reader.readLine()) != null) sb.append(line);
-            return sb.toString();
-        }
-    }
-    // puedes añadir más métodos: getAsignaturas(), postLogin(), etc.
+    // 1) JSON del alumno base
+    String alumnoJson = CentroClient.instance()
+        .getResource("/alumnos/" + dni, apiKey, sessionCookie);
+    Alumno alumno = GSON.fromJson(alumnoJson, Alumno.class);
+
+    // 2) JSON de sus asignaturas (array de objetos)
+    String asigJson = CentroClient.instance()
+        .getResource("/alumnos/" + dni + "/asignaturas", apiKey, sessionCookie);
+
+    // 3) Parsear directamente a List<Asignatura>
+    List<Asignatura> asignaturas = GSON.fromJson(
+      asigJson,
+      new TypeToken<List<Asignatura>>(){}.getType()
+    );
+
+    // 4) Inyectar la lista en el POJO
+    alumno.setAsignaturas(asignaturas);
+    return alumno;
+  }
 }
