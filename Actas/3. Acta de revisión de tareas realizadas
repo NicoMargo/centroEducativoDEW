@@ -3,7 +3,7 @@
 **Fecha**: 19/05/2025  
 **Hora**: 18:00  
 **Lugar**: DISC 3  
-**Número**: 2
+**Número**: 3
 
 ## Asistentes  
 - Carmen Crespo Navarro – ccrenav1@etsinf.upv.es  
@@ -30,9 +30,10 @@ Se puso en común el trabajo autónomo de cada uno, detectandose errores con alg
 Además, se detectaron errores también en la subida de cambios al repositorio, que se estuvieron arreglando durante la sesión, optando por eliminar una de las ramas creadas y optando por volver a incluir el de manera manual.
 **Partes por incluir**
 -Se acordó guardar las fotos de los alumnos con su dni para facilitar el trabajo, y el tamaño y formato en el que estarán las fotografías. Además, se decidió usar la página thispersondoesnotexit para generarlas
-
+- Shell-script
+- Modificar diagrama de clases con nuevas clases modificadas.
 ## Acuerdos  
-1. **Reunion semanal próxima**,
+1. **Reunion siguiente**. Se acordó tener una reunión el día 20/05/2025.
 2. Subir cambios al repositorio de github, cada uno a su rama, se terminarán de subir al main cuando se verifique que todo es correcto.
 
 **Validado por:**  
