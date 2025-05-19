@@ -27,7 +27,7 @@
  Alejandro Navarro Sala. Realización del back-end.
 
 ## Trabajo realizado
-- Se empezó a analizar y a dividir el trabajo a realizar, empezando así los diagramas encargados de mostrarnos atributos y clase a usar. 
+- Se empezó a analizar y a dividir el trabajo a realizar, empezando así los diagramas encargados de mostrarnos atributos y clases a usar. 
 
 ## Acuerdos  
 1. **Reuniones semanales**, o bien en persona o mediante llamada telefónica. De 1 a 2.
