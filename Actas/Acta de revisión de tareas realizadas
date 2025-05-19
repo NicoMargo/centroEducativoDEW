@@ -12,27 +12,29 @@
 - Nicolas Margossian – nmargos@etsinf.upv.es  
 - Alejandro Navarro Sala – anavsal@etsinf.upv.es
 
-## Roles asignados  
-- **Secretario/a**: Carmen Crespo Navarro
-- **Repositorio**: Github
-- **Comunicación**: Mediante grupo de whatsapp, discord
-- **Lugar de trabajo**: Cabina biblioteca central o trabajo autonomo
-
 ## Distribución trabajo 
- Miembro                | Tareas iniciales    | 
- Carmen Crespo Navarro.  Redacción de actas, diagramas, memoria y apoyo en los demás contenidos a desarrollar.   
- Yahya Fares.            Realización de front-end.Pantalla inicial y listado de asignaturas (HTML, CSS, Bootstrap 5.3.3)    
- Antonio Laria Romero.   Realización de front-end. Login y detalle de asignatura con nota (HTML, CSS, Bootstrap 5.3.3) 
- Nicolas Margossian.     Realización del back-end.
- Alejandro Navarro Sala. Realización del back-end.
+ Miembro                | Tareas realizadas durante reunión    | 
+ Carmen Crespo Navarro.   Redacción de actas. Resolución de errores.  
+ Yahya Fares.             Resolución de errores.              
+ Antonio Laria Romero.    Resolución de errores.  
+ Nicolas Margossian.      Resolución de errores.  
+ Alejandro Navarro Sala.  Resolución de errores.  
 
-## Trabajo realizado
--  
+## Trabajo realizado en la sesión
+**Puesta en común**
+Se puso en común el trabajo autónomo de cada uno, detectandose errores con algunos botones y falta de elementos como parte del javascript.
+**Botones**
+-  Procedimos a arreglar los botones. Cambiamos las opciones de ir a mi perfil alumno. 
+-  Añadimos otro boton para volver que te lleva a la página principal. Volver al inicio desde paginas de error
+**Errores respositorio**
+Además, se detectaron errores también en la subida de cambios al repositorio, que se estuvieron arreglando durante la sesión, optando por eliminar una de las ramas creadas y optando por volver a incluir el de manera manual.
+**Partes por incluir**
+-Se acordó guardar las fotos de los alumnos con su dni para facilitar el trabajo, y el tamaño y formato en el que estarán las fotografías.
+- Se comenzó a indagar sobre el uso de AJAX.
 
 ## Acuerdos  
-1. **Reuniones semanales**, o bien en persona o mediante llamada telefónica. De 1 a 2.
-2. Subir cambios al repositorio de github.
-3. Próxima reunión acordada para finales de semana.
+1. **Reunion semanal próxima**,
+2. Subir cambios al repositorio de github, cada uno a su rama, se terminarán de subir al main cuando se verifique que todo es correcto.
 
 **Validado por:**  
 Carmen Crespo Navarro, Yahya Fares, Antonio Laria Romero, Nicolas Margossian, Alejandro Navarro Sala
