@@ -1,5 +1,6 @@
 package dew.filter;
 
+import dew.helper.InputValidator;
 import dew.models.AuthResult;
 import dew.service.CentroClient;
 import jakarta.servlet.*;
@@ -36,11 +37,14 @@ public class DataAuthFilter implements Filter {
     if (session.getAttribute("apiKey") == null && req.getRemoteUser() != null) {
       String user = req.getRemoteUser();
       String pass = creds.getProperty(user);
-      if (pass == null) {
+      
+      //Valido la entrada que sea valida y no contenga ataques
+      if (!InputValidator.isValidRequired(pass) || !InputValidator.isValidRequired(user) ) {
         res.sendError(HttpServletResponse.SC_UNAUTHORIZED,
             "Sin credencial REST para " + user);
         return;
       }
+      
       AuthResult auth = CentroClient.instance().login(user, pass);
       session.setAttribute("apiKey",        auth.getApiKey());
       session.setAttribute("sessionCookie", auth.getSessionCookie());
