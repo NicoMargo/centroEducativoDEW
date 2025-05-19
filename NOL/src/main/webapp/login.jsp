@@ -55,5 +55,6 @@
     </main>
   </div>
     
+<script src="./js/login.js"></script>
     
  <jsp:include page="/includes/footer.html" />

@@ -27,7 +27,7 @@
 
         <div class="mt-5">
           <a href="http://localhost:8080/NOL/alumno" class="btn btn-secondary btn-lg">
-            <i class="fas fa-sign-in-alt me-2"></i> Ir a mi perfil
+            <i class="fas fa-sign-in-alt me-2"></i> Ir a mi perfil Alumno
           </a>
         </div>
       </div>
@@ -35,6 +35,5 @@
       </main>
 </div>
  
-
   
 <jsp:include page="/includes/footer.html" />

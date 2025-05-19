@@ -44,7 +44,7 @@
           <button onclick="history.back()" class="btn btn-secondary me-3">
             <i class="fas fa-arrow-left me-2"></i>Volver Atrás
           </button>
-          <a href="/" class="btn btn-outline-secondary">
+          <a href="./" class="btn btn-outline-secondary">
             <i class="fas fa-home me-2"></i>Ir al Inicio
           </a>
         </div>

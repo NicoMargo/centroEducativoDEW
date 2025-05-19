@@ -41,10 +41,7 @@
         </div>
 
         <div class="mt-4 d-flex justify-content-center">
-          <a href="/login.html" class="btn btn-secondary me-3">
-            <i class="fas fa-sign-in-alt me-2"></i>Iniciar Sesión
-          </a>
-          <a href="/" class="btn btn-outline-secondary">
+          <a href="./" class="btn btn-outline-secondary">
             <i class="fas fa-home me-2"></i>Volver al Inicio
           </a>
         </div>
