@@ -1,15 +1,12 @@
-
 <%@page contentType="text/html" pageEncoding="utf-8"%>
 <jsp:include page="/includes/header.html" />  
-<link rel="stylesheet" href="/css/perfilAlumno.css" />
+<link rel="stylesheet" href="../css/perfilAlumno.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 
 
-<body>
   <div class="container">
-    <div class="separator"></div>
-    <h1 class="fw-bold text-center mx-auto">FICHA DEL ALUMNO</h1>
+    <h2 class="fw-bold text-center mx-auto">FICHA DEL ALUMNO</h2>
     <main class="pb-5">
       <div class="perfil-card border">
         <div class="card-body">
@@ -44,7 +41,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <jsp:include page="../includes/footer.html" />
-  <script src="/js/perfilAlumno.js"></script>
-</body>
+  <jsp:include page="/includes/footer.html" />
+  <script src="../js/perfilAlumno.js"></script>
 </html>

@@ -1,19 +1,15 @@
 <%@page contentType="text/html" pageEncoding="utf-8"%>
-
+<link rel="stylesheet" href="../css/index.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="/css/index1.css">
 
 <div class="container">
   <header class="text-center mb-3">
-    <h1 class="fw-bold">BIENVENID@ A NOTAS ONLINE</h1>
+    <h2 class="fw-bold">BIENVENID@ A NOTAS ONLINE</h1>
     <h2 class="fw-bold">SISTEMA DE GESTIÓN ACADÉMICA</h2>
   </header>
-
   <div class="separator"></div>
-
   <main class="text-center pb-5">
-
     <div class="welcome-card border">
       <div class="card-body">
         <p class="lead mb-4">Esta plataforma permite a estudiantes y profesores gestionar de forma eficiente el seguimiento académico de las asignaturas.</p>
@@ -39,5 +35,4 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 <jsp:include page="/includes/footer.html" />

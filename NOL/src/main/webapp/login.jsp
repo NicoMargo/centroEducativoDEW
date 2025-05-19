@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="utf-8"%>
-<jsp:include page="/includes/header.html" />
+<jsp:include page="../includes/header.html" />
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,21 +7,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Login - Notas Online</title>
 
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet" href="/css/login.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="../css/login.css">
 </head>
 <body>
   <div class="container">
-    <header class="text-center mb-3">
-      <h1 class="fw-bold">BIENVENID@ A NOTAS ONLINE</h1>
-        <h2 class="fw-bold">*AQÍ VA UNA DESCRIPCIÓN*</h2>
-    </header>
-
-    <div class="separator"></div>
 
     <main class="text-center pb-5">
       <h2 class="fw-bold mb-4">CONSULTA TUS EXÁMENES</h2>
@@ -65,6 +56,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="/js/login.js"></script>
+  <script src="../js/login.js"></script>
 </body>
 </html>
