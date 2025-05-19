@@ -1,0 +1,27 @@
+# Acta de revisión de tareas realizadas del equipo “G12”
+
+**Fecha**: 13/05/2025  
+**Hora**: 12:00  
+**Lugar**: Online
+**Número**: 2
+
+## Asistentes  
+- Carmen Crespo Navarro – ccrenav1@etsinf.upv.es  
+- Yahya Fares – yfares@arq.upv.es 
+- Antonio Laria Romero – alarrom@etsinf.upv.es  
+- Nicolas Margossian – nmargos@etsinf.upv.es  
+- Alejandro Navarro Sala – anavsal@etsinf.upv.es
+
+## Acuerdos
+**Frontend**
+  Se acordó no añadir una cuarta página dedicada a la edición de la nota. En su lugar, se implementará un popup de Bootstrap que permitirá modificar la calificación directamente.
+**Librerías**
+Se acordó el uso de Apache HttpClient 5.4. 
+Se acordó el uso de GSON.
+
+**Repositorio**
+Se acordó y se crearon 6 ramas, siendo una de estas la main donde se subirá toda la información una vez sea verficado su correcto uso, y teniendo una individual por miembro para realizar los cambios que considere necesarios.
+
+
+**Validado por:**  
+Carmen Crespo Navarro, Yahya Fares, Antonio Laria Romero, Nicolas Margossian, Alejandro Navarro Sala
