@@ -25,16 +25,21 @@
 Se puso en común el trabajo autónomo de cada uno, detectandose errores con algunos botones y falta de elementos como parte del javascript.
 **Botones**
 -  Procedimos a arreglar los botones. Cambiamos las opciones de ir a mi perfil alumno. 
--  Añadimos otro boton para volver que te lleva a la página principal. Volver al inicio desde paginas de error
-**Errores respositorio**
+-  Añadimos otros 2 botones, uno para cerrar sesión y otro para volver que te lleva al inicio, en header. 
+- Volver al inicio desde paginas de error
+**Errores en respositorio**
 Además, se detectaron errores también en la subida de cambios al repositorio, que se estuvieron arreglando durante la sesión, optando por eliminar una de las ramas creadas y optando por volver a incluir el de manera manual.
 **Partes por incluir**
--Se acordó guardar las fotos de los alumnos con su dni para facilitar el trabajo, y el tamaño y formato en el que estarán las fotografías. Además, se decidió usar la página thispersondoesnotexit para generarlas
+- Se acordó guardar las fotos de los alumnos con su dni para facilitar el trabajo, y el tamaño y formato en el que estarán las fotografías. Además, se decidió usar la página thispersondoesnotexit para generarlas
 - Shell-script
 - Modificar diagrama de clases con nuevas clases modificadas.
+- Se observó que el campo nombre del profesor en detalles de la asignatura no había sido incluido.
+
+LU
 ## Acuerdos  
 1. **Reunion siguiente**. Se acordó tener una reunión el día 20/05/2025.
 2. Subir cambios al repositorio de github, cada uno a su rama, se terminarán de subir al main cuando se verifique que todo es correcto.
+3. **Adelanto de segunda entrega* Se comenzó a indagar sobre la segunda entrega y se acordó en crear un ir a perfil alumno, ir a perfil profesor. Cada uno te llevará a NOL/ALUMNO y a NOL/PROF. Después llevará un security check. El login será el mismo para ambos.
 
 **Validado por:**  
 Carmen Crespo Navarro, Yahya Fares, Antonio Laria Romero, Nicolas Margossian, Alejandro Navarro Sala
