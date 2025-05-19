@@ -22,9 +22,6 @@
             <button id="btnAlumno" class="btn btn-outline-dark active me-2">
               <i class="fas fa-user-graduate me-2"></i>ALUMNO
             </button>
-            <button id="btnProfesor" class="btn btn-outline-dark">
-              <i class="fas fa-chalkboard-teacher me-2"></i>PROFESOR
-            </button>
           </div>
    
 
