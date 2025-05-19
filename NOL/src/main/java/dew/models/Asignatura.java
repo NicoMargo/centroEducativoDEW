@@ -1,5 +1,4 @@
 package dew.models;
-
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
@@ -17,6 +16,8 @@ public class Asignatura {
   private int curso;
   private String cuatrimestre;
   private double creditos;
+  private List<Profesor> profesores;
+
 
   // getters & setters
   public String getAcronimo()      { return acronimo; }
@@ -36,4 +37,7 @@ public class Asignatura {
 
   public double getCreditos()      { return creditos; }
   public void setCreditos(double c){ this.creditos = c; }
+  
+  public List<Profesor> getProfesores() { return profesores; }
+  public void setProfesores(List<Profesor> profesores) { this.profesores = profesores;}
 }
