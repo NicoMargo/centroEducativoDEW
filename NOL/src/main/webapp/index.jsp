@@ -26,14 +26,13 @@
         </div>
 
         <div class="mt-5 d-flex flex-column align-items-center gap-3">
-  			<a href="http://localhost:8080/NOL/login.jsp?rol=alumno" class="btn btn-secondary btn-lg w-50">
-    			<i class="fas fa-user-graduate me-2"></i> Ir a mi perfil Alumno
-  			</a>
-  			<a href="http://localhost:8080/NOL/login.jsp?rol=profesor" class="btn btn-secondary btn-lg w-50">
-   			 	<i class="fas fa-chalkboard-teacher me-2"></i> Ir a mi perfil Profesor
-  			</a>
-		</div>
-        
+  <a href="http://localhost:8080/NOL/alumno" class="btn btn-secondary btn-lg w-50">
+    <i class="fas fa-user-graduate me-2"></i> Ir a mi perfil Alumno
+  </a>
+  <a href="http://localhost:8080/NOL/profesor" class="btn btn-secondary btn-lg w-50">
+    <i class="fas fa-chalkboard-teacher me-2"></i> Ir a mi perfil Profesor
+  </a>
+</div>
       </div>
     </div>
       </main>
