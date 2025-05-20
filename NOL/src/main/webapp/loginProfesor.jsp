@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="utf-8"%>
 <jsp:include page="/includes/header.html" />
-
+<link rel="stylesheet" href="./css/loginProfesor.css">
+ 
  <h2>Autenticación</h2>
   <!-- 
     tirar error si falla login
@@ -20,7 +21,7 @@
         <div class="card-body">
           <div class="d-flex justify-content-center mb-4 role-toggle">
             <button id="btnAlumno" class="btn btn-outline-dark active me-2">
-              <i class="fas fa-user-graduate me-2"></i>ALUMNO
+              <i class="fas fa-user-graduate me-2"></i>PROFESOR
             </button>
           </div>
    
