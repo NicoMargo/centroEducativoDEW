@@ -39,7 +39,7 @@ h2 {
 	margin: 1.5rem 0;
 	opacity: 0.3;
 	position: relative;
-
+}
 main {
     display: flex;
     flex-direction: column;
@@ -81,5 +81,5 @@ main {
 }
 
 .btn-secondary:hover {
-    background-color: #212529;
+    background-color: #212529;   
 }
