@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="utf-8"%>
 <jsp:include page="/includes/header.html" />
+<jsp:include page="/includes/head.jsp" />
 
 <div class="container">
     <div class="text-center mb-3" role="banner">
