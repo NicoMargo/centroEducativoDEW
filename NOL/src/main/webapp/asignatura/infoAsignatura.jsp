@@ -1,9 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/includes/header.html" />
+<jsp:include page="/includes/head.jsp" />
 
 <div class="container">
   <main class="text-center pb-5">
-    <h2 class="fw-bold mb-4">INFORMACIÓN DE ASIGNATURA</h2>
+    <h2 class="fw-bold mb-4">INFORMACIÃ“N DE ASIGNATURA</h2>
 
     <div class="asignatura-card border">
       <div class="card-body">
@@ -15,7 +16,7 @@
           <ul class="list-unstyled mb-0">
             <li><strong>Curso:</strong> ${asignatura.curso}</li>
             <li><strong>Cuatrimestre:</strong> ${asignatura.cuatrimestre}</li>
-            <li><strong>Créditos:</strong> ${asignatura.creditos}</li>
+            <li><strong>CrÃ©ditos:</strong> ${asignatura.creditos}</li>
           </ul>
         </div>
         <section>
