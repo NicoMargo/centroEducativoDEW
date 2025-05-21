@@ -5,14 +5,22 @@
 **Lugar**: DISC 3  
 **Número**: 3
 
-## Asistentes  
+## 1. Asistentes  
 - Carmen Crespo Navarro – ccrenav1@etsinf.upv.es  
 - Yahya Fares – yfares@arq.upv.es 
 - Antonio Laria Romero – alarrom@etsinf.upv.es  
 - Nicolas Margossian – nmargos@etsinf.upv.es  
 - Alejandro Navarro Sala – anavsal@etsinf.upv.es
 
-## Distribución trabajo 
+## 2. Agenda
+1. Distribución de trabajo  
+2. Puesta en común de errores y estado general  
+3. Revisión de botones y navegación  
+4. Errores en el repositorio Git  
+5. Partes pendientes por incluir  
+6. Planificación de próximos pasos
+
+## 3. Distribución trabajo durante sesión
  Miembro                | Tareas realizadas durante reunión    | 
  Carmen Crespo Navarro.   Redacción de actas. Resolución de errores.  
  Yahya Fares.             Resolución de errores.              
@@ -20,27 +28,58 @@
  Nicolas Margossian.      Resolución de errores.  
  Alejandro Navarro Sala.  Resolución de errores.  
 
-## Trabajo realizado en la sesión
-**Puesta en común**
-Se puso en común el trabajo autónomo de cada uno, detectandose errores con algunos botones y falta de elementos como parte del javascript.
-**Botones**
--  Procedimos a arreglar los botones. Cambiamos las opciones de ir a mi perfil alumno. 
--  Añadimos otros 2 botones, uno para cerrar sesión y otro para volver que te lleva al inicio, en header. 
-- Volver al inicio desde paginas de error
-**Errores en respositorio**
-Además, se detectaron errores también en la subida de cambios al repositorio, que se estuvieron arreglando durante la sesión, optando por eliminar una de las ramas creadas y optando por volver a incluir el de manera manual.
-**Partes por incluir**
-- Se acordó guardar las fotos de los alumnos con su dni para facilitar el trabajo, y el tamaño y formato en el que estarán las fotografías. Además, se decidió usar la página thispersondoesnotexit para generarlas
-- Shell-script
-- Modificar diagrama de clases con nuevas clases modificadas.
-- Se observó que el campo nombre del profesor en detalles de la asignatura no había sido incluido.
+## 4. Desarrollo de la reunión
+### Artículo 4.1. Puesta en común  
+Cada miembro expuso el estado de su trabajo autónomo. Se identificaron errores en interacción de botones y carencias en scripts de cliente.
 
-LU
-## Acuerdos  
+### Artículo 4.2. Botones y navegación  
+1. **Corrección de rutas**  
+   - Ajustada la opción “Mi perfil alumno” para apuntar correctamente al servlet correspondiente.  
+2. **Nuevos botones en el header**  
+   - “Cerrar sesión” para invocar al `LogoutServlet`.  
+   - “Volver al inicio” redirige a la página principal desde cualquier vista.  
+3. **Navegación de error**  
+   - Desde páginas de error (404/500) se añadió botón “Volver al inicio”.
+
+### Artículo 4.3. Errores en el repositorio  
+- Se detectaron conflictos al hacer push en GitHub.  
+- **Acción tomada:** Eliminación de la rama duplicada y reintegración manual de los cambios.
+
+### Artículo 4.4. Partes pendientes por incluir  
+1. **Fotografías de alumnos**  
+   - Guardar con nombre y DNI en JPG (200×200 px), generadas vía thispersondoesnotexist.  
+2. **Shell‐script**  
+   - Script de despliegue y configuración local.  
+3. **Diagrama de clases**  
+   - Actualizar UML con las nuevas entidades y relaciones.  
+4. **Campo “nombre del profesor”**  
+   - Incluir en la vista de detalles de asignatura y en la clase `Profesor.java`.  
+
+## 5. Tareas asignadas
+
+| Miembro                | Tarea                                                                                         | Fecha límite: 20/05/2025  |
+| Todos                  | Subir cambios al repositorio en ramas individuales; no hacer merge a `main` sin revisión.     
+| Carmen Crespo Navarro  | Actualizar diagrama de clases, continuar con la redacción de la memoria y acudir a siguiente reunión programada                          
+| Yahya Fares            | Corregir páginas de error y botones                            
+| Antonio Laria Romero   | Corregir estructura HTML/JSP                          
+| Nicolás Margossian     | Proceder con contenidos a desarrollar del back-end tratados durante la sesión             
+| Alejandro Navarro Sala | Escribir el shell‐script de despliegue      
+
+
+## 6. Acuerdos  
 1. **Reunion siguiente**. Se acordó tener una reunión el día 20/05/2025.
 2. Subir cambios al repositorio de github, cada uno a su rama, se terminarán de subir al main cuando se verifique que todo es correcto.
-3. **Adelanto de segunda entrega* Se comenzó a indagar sobre la segunda entrega y se acordó en crear un ir a perfil alumno, ir a perfil profesor. Cada uno te llevará a NOL/ALUMNO y a NOL/PROF. Después llevará un security check. El login será el mismo para ambos.
+3. **Adelanto de segunda entrega** Se comenzó a indagar sobre la segunda entrega y se acordó en crear un ir a perfil alumno, ir a perfil profesor. Cada uno te llevará a NOL/ALUMNO y a NOL/PROF. Después llevará un security check. El login será el mismo para ambos.
+
+## 7. Próxima reunión
+- **Fecha:** 20/05/2025  
+- **Hora:** 17:00  
+- **Lugar:** Online (LLamada) 
 
 **Validado por:**  
-Carmen Crespo Navarro, Yahya Fares, Antonio Laria Romero, Nicolas Margossian, Alejandro Navarro Sala
+-Carmen Crespo Navarro
+-Yahya Fares
+-Antonio Laria Romero
+-Nicolas Margossian
+-Alejandro Navarro Sala
 
