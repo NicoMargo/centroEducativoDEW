@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <title>Ficha del Alumno</title>
   <jsp:include page="/includes/header.html"/>
+  <jsp:include page="/includes/head.jsp" />
   <link rel="stylesheet"
         href="${pageContext.request.contextPath}/css/perfilAlumno.css"/>
   <link rel="stylesheet"
