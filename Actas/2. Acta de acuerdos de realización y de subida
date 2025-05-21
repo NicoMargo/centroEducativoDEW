@@ -5,23 +5,40 @@
 **Lugar**: Online
 **Número**: 2
 
-## Asistentes  
+## 1. Asistentes  
 - Carmen Crespo Navarro – ccrenav1@etsinf.upv.es  
 - Yahya Fares – yfares@arq.upv.es 
 - Antonio Laria Romero – alarrom@etsinf.upv.es  
 - Nicolas Margossian – nmargos@etsinf.upv.es  
 - Alejandro Navarro Sala – anavsal@etsinf.upv.es
 
-## Acuerdos
+## 2. Acuerdos
 **Frontend**
   Se acordó no añadir una cuarta página dedicada a la edición de la nota. En su lugar, se implementará un popup de Bootstrap que permitirá modificar la calificación directamente.
 **Librerías**
 Se acordó el uso de Apache HttpClient 5.4. 
+  - Aprobado para las comunicaciones HTTP con servicios externos (p.ej. APIs de consulta de datos).  
 Se acordó el uso de GSON.
-
+  - Seleccionado para deserializar/serializar objetos JSON tanto en backend como en llamadas AJAX.
 **Repositorio**
-Se acordó y se crearon 6 ramas, siendo una de estas la main donde se subirá toda la información una vez sea verficado su correcto uso, y teniendo una individual por miembro para realizar los cambios que considere necesarios.
-
+- Se crearon **6 ramas** en GitHub:  
+  1. `main` – Integración final tras verificación.  
+  2. `carmen` – Cambios de la parte de actas y documentación.  
+  3. `yahya` – Frontend y validación de formulario.  
+  4. `antonio` – Lógica de navegación y modales Bootstrap.  
+  5. `nico` – Backend
+  6. `alejandro` – Backend 
+  - Reglas de uso:  
+    - Cada miembro trabajará en su rama y hará pull requests al `main` cuando todo esté probado.  
+    - Revisiones cruzadas mínimas de un compañero antes de merge.
+**Próxima reunión**
+- **Fecha:** 19/05/2025  
+- **Hora:** 18:00  
+- **Lugar:** DISC 3
 
 **Validado por:**  
-Carmen Crespo Navarro, Yahya Fares, Antonio Laria Romero, Nicolas Margossian, Alejandro Navarro Sala
+-Carmen Crespo Navarro
+-Yahya Fares
+-Antonio Laria Romero
+-Nicolas Margossian
+Alejandro Navarro Sala
