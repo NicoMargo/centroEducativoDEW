@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="./css/error404.css">
-<jsp:include page="/includes/header.html" />
+<jsp:include page="/includes/header.jsp" />
 
 <div class="container">
 

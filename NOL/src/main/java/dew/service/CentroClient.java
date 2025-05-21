@@ -2,6 +2,7 @@ package dew.service;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 
 import org.apache.hc.client5.http.cookie.BasicCookieStore;
 import org.apache.hc.client5.http.cookie.CookieStore;
@@ -14,11 +15,14 @@ import org.apache.hc.core5.http.Header;
 import org.apache.hc.core5.http.ParseException;
 import org.apache.hc.core5.http.io.entity.StringEntity;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
+import com.google.gson.Gson;
 
 import dew.models.AuthResult;
 
 public class CentroClient {
   private static final String BASE_URL = "http://localhost:9090/CentroEducativo/";
+  private static final Gson GSON = new Gson();
+
 
   // 1) Un CookieStore estático
   private static final CookieStore COOKIE_STORE = new BasicCookieStore();
@@ -43,42 +47,50 @@ public class CentroClient {
 
   /** POST /login → devuelve apiKey + sessionCookie */
   public AuthResult login(String dni, String pass) throws IOException {
-    // antes de loguear, vaciamos cookies antiguas:
-    clearCookies();
+	    // antes de loguear, vaciamos cookies antiguas:
+	    clearCookies();
 
-    HttpPost post = new HttpPost(BASE_URL + "login");
-    post.setEntity(new StringEntity(
-      String.format("{\"dni\":\"%s\",\"password\":\"%s\"}", dni, pass),
-      StandardCharsets.UTF_8));
-    post.setHeader("Content-Type", "application/json");
+	    HttpPost post = new HttpPost(BASE_URL + "login");
+	    // 1) Construir el payload con un Map o DTO
+	    Map<String,String> payload = Map.of(
+	      "dni",      dni,
+	      "password", pass
+	    );
+	    // 2) Serializar con Gson
+	    String jsonBody = GSON.toJson(payload);
 
-    try (var resp = HTTP.execute(post)) {
-      int code = resp.getCode();
-      if (code != 200) {
-        throw new IOException("Login failed: HTTP " + code);
-      }
-      String apiKey;
-      try {
-          apiKey = EntityUtils.toString(resp.getEntity(), StandardCharsets.UTF_8).trim();
-    	  
-      }catch (Exception e){
-    	  apiKey = null;
-      }
+	    post.setEntity(new StringEntity(jsonBody, StandardCharsets.UTF_8));
+	    post.setHeader("Content-Type", "application/json");
 
-      String sessionCookie = null;
-      for (Header h : resp.getHeaders("Set-Cookie")) {
-        String v = h.getValue();
-        if (v.startsWith("JSESSIONID=")) {
-          sessionCookie = v.split(";", 2)[0];
-          break;
-        }
-      }
-      if (sessionCookie == null) {
-        throw new IOException("No JSESSIONID cookie in login response");
-      }
-      return new AuthResult(apiKey, sessionCookie);
-    }
-  }
+	    try (CloseableHttpResponse resp = HTTP.execute(post)) {
+	      int code = resp.getCode();
+	      if (code != 200) {
+	        throw new IOException("Login failed: HTTP " + code);
+	      }
+	      // parseo seguro del cuerpo
+	      String apiKey;
+	      try {
+	        apiKey = EntityUtils.toString(
+	          resp.getEntity(), StandardCharsets.UTF_8
+	        ).trim();
+	      } catch (Exception e) {
+	        throw new IOException("Error parsing login response", e);
+	      }
+
+	      String sessionCookie = null;
+	      for (Header h : resp.getHeaders("Set-Cookie")) {
+	        String v = h.getValue();
+	        if (v.startsWith("JSESSIONID=")) {
+	          sessionCookie = v.split(";", 2)[0];
+	          break;
+	        }
+	      }
+	      if (sessionCookie == null) {
+	        throw new IOException("No JSESSIONID cookie in login response");
+	      }
+	      return new AuthResult(apiKey, sessionCookie);
+	    }
+	  }	
 
   /** GET genérico a un recurso REST */
   public String getResource(String resource, String apiKey, String cookie)

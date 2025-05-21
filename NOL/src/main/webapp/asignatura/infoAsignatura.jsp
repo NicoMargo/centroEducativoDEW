@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:include page="/includes/header.html" />
+<jsp:include page="/includes/header.jsp" />
 
 <div class="container">
   <main class="text-center pb-5">

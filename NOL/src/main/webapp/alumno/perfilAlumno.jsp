@@ -1,18 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List, dew.models.Alumno, dew.models.Asignatura" %>
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
+<jsp:include page="/includes/header.jsp"/>
+
   <title>Ficha del Alumno</title>
-  <jsp:include page="/includes/header.html"/>
-  <link rel="stylesheet"
-        href="${pageContext.request.contextPath}/css/perfilAlumno.css"/>
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
-</head>
 <body>
   <div class="container">
     <h2 class="fw-bold text-center mx-auto">FICHA DEL ALUMNO</h2>
@@ -30,6 +20,9 @@
                  <strong>Apellidos:</strong> ${alumno.apellidos}</p>
               <p><i class="fas fa-id-card me-2"></i>
                  <strong>DNI:</strong> ${alumno.dni}</p>
+            </div>
+            <div class="photo-container">
+                 <img src="./img/${alumno.dni}.webp" alt="Foto del alumno" id="fotoAlumno" class="foto-alumno" />
             </div>
           </section>
 
@@ -84,8 +77,4 @@
     </main>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <jsp:include page="/includes/footer.html"/>
-  <script src="${pageContext.request.contextPath}/js/perfilAlumno.js"></script>
-</body>
-</html>

@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="utf-8"%>
-<jsp:include page="/includes/header.html" />
+<jsp:include page="/includes/header.jsp" />
 
  <h2>Autenticación</h2>
  

@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="utf-8"%>
-<jsp:include page="/includes/header.html" />
+<jsp:include page="/includes/header.jsp" />
 
 <div class="container">
     <div class="text-center mb-3" role="banner">
@@ -27,7 +27,7 @@
           </a>
         </div>
         <div class="mt-5">
-          <a href="http://localhost:8080/NOL/profesor.html" class="btn btn-secondary btn-lg">
+          <a href="http://localhost:8080/NOL/profesor.jsp" class="btn btn-secondary btn-lg">
             <i class="fas fa-sign-in-alt me-2"></i> Ir a mi perfil Profesor 
           </a>
         </div>

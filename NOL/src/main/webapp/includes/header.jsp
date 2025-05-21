@@ -1,3 +1,5 @@
+<%@ page session="true" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
   <!DOCTYPE html>
   <html lang="es">
   <head>
@@ -10,20 +12,23 @@
   	  <link rel="stylesheet" href="./css/infoAsignatura.css">
   	  <link rel="stylesheet" href="./css/login.css">
   	  <link rel="stylesheet" href="./css/index.css">
-  	  <link rel="stylesheet" href="./css/loginProfesor.css">
+  	  <link rel="stylesheet" href="./css/profesor.css">
   	  <link rel="stylesheet" href="./css/header.css">
   </head>
   <body>
       <h1 class="fw-bold">NOTAS ONLINE</h1>
-      <h2 class="fw-bold">GESTIÓN DE ASIGNATURAS</h2>
+      <h2 class="fw-bold">GESTION DE ASIGNATURAS</h2>
       
       <div class="top-buttons d-flex gap-2">
-      <a href="index.jsp" class="btn btn-dark shadow-sm">
+    <a href="index.jsp" class="btn btn-dark shadow-sm">
         <i class="fas fa-home me-2"></i>Inicio
-      </a>
-      <a href="./logout" class="btn btn-outline-dark shadow-sm">
-        <i class="fas fa-sign-out-alt me-2"></i>Cerrar Sesión
-      </a>
-      </div>
+    </a>
+
+    <c:if test="${not empty sessionScope.dni}">
+        <a href="${pageContext.request.contextPath}/logout" class="btn btn-outline-dark shadow-sm">
+            <i class="fas fa-sign-out-alt me-2"></i>Cerrar Sesi�n
+        </a>
+    </c:if>
+</div>
       
       <div class="separator"></div>
