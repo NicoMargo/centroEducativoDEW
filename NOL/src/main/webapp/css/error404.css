@@ -38,7 +38,7 @@ h2 {
 .separator {
 	width: 100%;
 	height: 3px;
-	background: linear-gradient(90deg, transparent, #007bff, transparent);
+	background: linear-gradient(90deg, transparent, #dc3545, transparent);
 	margin: 1.5rem 0;
 	opacity: 0.3;
 	position: relative;
@@ -73,7 +73,7 @@ main {
 
 .error-icon {
 	font-size: 5rem;
-	color: #007bff;
+	color: #dc3545;
 	margin-bottom: 1.5rem;
 	animation: pulse 2s infinite;
 }
@@ -94,13 +94,13 @@ main {
 }
 
 .error-message, .possible-causes, .next-steps {
-	border-left: 5px solid #007bff;
+	border-left: 5px solid #dc3545;
 	transition: all 0.3s ease;
 	text-align: left;
 }
 
 .error-message:hover, .possible-causes:hover, .next-steps:hover {
-	border-left-color: #0056b3;
+	border-left-color: #c82333;
 	background-color: #f8f9fa;
 }
 
@@ -128,13 +128,13 @@ main {
 }
 
 .btn-secondary {
-	background-color: #007bff;
+	background-color: #dc3545;
 	border: none;
 	padding: 0.8rem 1.8rem;
 }
 
 .btn-secondary:hover {
-	background-color: #0056b3;
+	background-color: #c82333;
 	transform: translateY(-3px);
 	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }

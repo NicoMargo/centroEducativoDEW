@@ -1,7 +1,8 @@
 <%@page contentType="text/html" pageEncoding="utf-8"%>
 <jsp:include page="/includes/header.html" />
-<link rel="stylesheet" href="./css/login.css">
+
  <h2>Autenticación</h2>
+ 
   <!-- 
     tirar error si falla login
 
@@ -12,10 +13,8 @@
 -->
     
     <div class="container">
-
     <main class="text-center pb-5">
       <h2 class="fw-bold mb-4">CONSULTA TUS EXÁMENES</h2>
-
       <div class="login-card border">
         <div class="card-body">
           <div class="d-flex justify-content-center mb-4 role-toggle">
@@ -23,8 +22,6 @@
               <i class="fas fa-user-graduate me-2"></i>ALUMNO
             </button>
           </div>
-   
-
           <form id="loginForm" action="j_security_check" method="POST">
             <div class="mb-3 text-start">
               <label for="usuario" class="form-label fw-semibold">
@@ -51,7 +48,5 @@
       </div>
     </main>
   </div>
-    
-<script src="./js/login.js"></script>
     
  <jsp:include page="/includes/footer.html" />
