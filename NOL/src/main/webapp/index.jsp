@@ -27,7 +27,7 @@
           </a>
         </div>
         <div class="mt-5">
-          <a href="http://localhost:8080/NOL/profesor.jsp" class="btn btn-secondary btn-lg">
+          <a href="http://localhost:8080/NOL/profesor" class="btn btn-secondary btn-lg">
             <i class="fas fa-sign-in-alt me-2"></i> Ir a mi perfil Profesor 
           </a>
         </div>

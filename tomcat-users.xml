@@ -9,4 +9,7 @@
   <user username="34567891F" password="123456" roles="rolalu"/>
   <user username="93847525G" password="123456" roles="rolalu"/>
   <user username="37264096W" password="123456" roles="rolalu"/>
+
+   <!-- Usuarios profesores (username = DNI, password = el que viene en la API REST) -->
+  <user username="23456733H" password="123456" roles="rolpro"/>
 </tomcat-users>	

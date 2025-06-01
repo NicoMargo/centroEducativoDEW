@@ -1,10 +1,14 @@
 package dew.models;
 
+import java.util.List;
+import dew.models.Asignatura;
+
 public class Profesor {
     private String apellidos;
     private String dni;
     private String nombre;
     private String password;
+    private List<Asignatura> asignaturas;
 
     public Profesor() { }
 
@@ -46,4 +50,12 @@ public class Profesor {
     public void setPassword(String password) {
         this.password = password;
     }
+    public List<Asignatura> getAsignaturas() {
+        return asignaturas;
+    }
+
+    public void setAsignaturas(List<Asignatura> asignaturas) {
+        this.asignaturas = asignaturas;
+    }
+    
 }
