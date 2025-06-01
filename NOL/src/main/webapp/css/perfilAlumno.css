@@ -1,0 +1,236 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f2f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  header {
+    margin-bottom: 0.5rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  h1 {
+    color: #343a40;
+    letter-spacing: 1px;
+    font-size: 1.8rem;
+    text-align: center;
+    margin: 10px auto;
+  }
+  
+  h2 {
+    color: #495057;
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+  }
+  
+  .separator {
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #6c757d, transparent);
+      margin: 1.5rem 0;
+      opacity: 0.3;
+      position: relative;
+  }
+  
+  .role-toggle .btn {
+    min-width: 150px;
+    border-radius: 20px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+  }
+  
+  .role-toggle .btn.active {
+    background-color: #343a40;
+    color: #fff;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  }
+  
+  .login-card {
+    max-width: 400px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    background-color: #fff;
+    border: none !important;
+  }
+  
+  .login-card .card-body {
+    padding: 2.5rem;
+  }
+  
+  .form-control {
+    padding: 0.7rem 1rem;
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+  }
+  
+  .form-control:focus {
+    border-color: #6c757d;
+    box-shadow: 0 0 0 0.25rem rgba(108, 117, 125, 0.25);
+  }
+  
+  .btn-secondary {
+    background-color: #343a40;
+    border: none;
+    padding: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-radius: 6px;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #212529;
+  }
+  
+  .dots {
+    font-size: 1.5rem;
+    letter-spacing: 5px;
+    color: #6c757d;
+    margin-top: -0.5rem;
+  }
+  
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .perfil-card {
+    max-width: 700px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    background-color: #fff;
+    border: none !important;
+    margin: 0 auto;
+  }
+  
+  .perfil-card .card-body {
+    padding: 2.5rem;
+  }
+  
+  
+  .datos-personales {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .datos-personales p {
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+  }
+  
+  .foto-alumno {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid #dee2e6;
+  }
+  
+  h3 {
+    color: #343a40;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 0.5rem;
+  }
+  
+  .table {
+    margin-top: 1rem;
+    border-radius: 12px;
+    overflow: hidden;
+    border-collapse: separate;
+    border-spacing: 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: 2px solid #dee2e6;
+  }
+  
+  .table th {
+    background-color: #343a40;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+    padding: 12px 15px;
+    border: none;
+  }
+  
+  .table td {
+    padding: 12px 15px;
+    border: none;
+    border-bottom: 1px solid #f2f2f2;
+    vertical-align: middle;
+  }
+  
+  .table tbody tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .table tbody tr {
+    transition: all 0.2s ease;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #f9f9f9;
+    transform: translateY(-1px);
+  }
+  
+  .table-responsive {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  .consultar-btn {
+    transition: all 0.2s ease;
+    font-weight: 600;
+    border-radius: 6px;
+    background-color: #343a40;
+    border: none;
+    letter-spacing: 0.5px;
+    padding: 0.5rem 1rem;
+  }
+  
+  .consultar-btn:hover {
+    background-color: #212529;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  }
+
+  .datos-foto-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+  
+  
+  @media (max-width: 767px) {
+    .datos-foto-container {
+      flex-direction: column-reverse;
+      align-items: center;
+    }
+  
+    .foto-alumno {
+      margin-bottom: 1.5rem;
+    }
+  
+    .perfil-card .card-body {
+      padding: 1.5rem;
+    }
+  }
