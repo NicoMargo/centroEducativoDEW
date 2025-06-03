@@ -12,6 +12,7 @@
 		  integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" 
 		  crossorigin="anonymous">
 		</script>
+		<script src="${pageContext.request.contextPath}/js/listaAlumnos.js"></script>
 		<script src="${pageContext.request.contextPath}/js/perfilAlumno.js"></script>
 		<script src="${pageContext.request.contextPath}/js/login.js"></script>
 		<script src="${pageContext.request.contextPath}/js/perfilProfesor.js"></script>

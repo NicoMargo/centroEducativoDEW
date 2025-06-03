@@ -48,7 +48,7 @@
                     <td><%= asig.getAcronimo() %></td>
                     <td class="text-center">
                       <a class="btn btn-sm btn-primary"
-                         href="<%= request.getContextPath() %>/asignatura?acronimo=<%= asig.getAcronimo() %>">
+                         href="<%= request.getContextPath() %>/profesor/listaAlumnos.jsp?acronimo=<%= asig.getAcronimo() %>&profesor=<%= profesor.getDni() %>">
                         Ver
                       </a>
                     </td>

@@ -14,6 +14,7 @@
   	  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
   	  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/profesor.css">
   	  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
+  	  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/listaAlumnos.css">
   </head>
   <body>
       <h1 class="fw-bold">NOTAS ONLINE</h1>

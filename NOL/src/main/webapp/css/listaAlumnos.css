@@ -1,0 +1,264 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f2f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+h2 {
+    color: #495057;
+    font-size: 1.4rem;
+    letter-spacing: 0.5px;
+    margin: 10px auto;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.perfil-card {
+    max-width: 900px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    background-color: #fff;
+    border: none !important;
+    margin: 0 auto;
+}
+
+.perfil-card .card-body {
+    padding: 2.5rem;
+}
+
+h3 {
+    color: #343a40;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 0.5rem;
+    text-align: center;
+}
+
+.table {
+    margin-top: 1rem;
+    border-radius: 12px;
+    overflow: hidden;
+    border-collapse: separate;
+    border-spacing: 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border: 2px solid #dee2e6;
+}
+
+.table th {
+    background-color: #343a40;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+    padding: 12px 15px;
+    border: none;
+    text-align: center;
+}
+
+.table td {
+    padding: 12px 15px;
+    border: none;
+    border-bottom: 1px solid #f2f2f2;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table tbody tr {
+    transition: all 0.2s ease;
+}
+
+.table tbody tr:hover {
+    background-color: #f9f9f9;
+    transform: translateY(-1px);
+}
+
+.table-responsive {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.btn-primary {
+    background-color: #343a40;
+    border: none;
+    transition: all 0.2s;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.btn-primary:hover {
+    background-color: #212529;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+/* Estilos para el modal */
+.modal-dialog {
+    max-width: 600px;
+    width: 90%;
+    margin: 1.75rem auto;
+}
+
+.modal-content {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.modal-header {
+    background-color: #fff;
+    border-radius: 10px 10px 0 0;
+    padding: 1.5rem 1.5rem 0.5rem;
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.modal-footer {
+    padding: 1rem 1.5rem 1.5rem;
+}
+
+.modal-backdrop.show {
+    opacity: 0.7;
+}
+
+.modal-title {
+    color: #343a40;
+    font-size: 1.4rem;
+    width: 100%;
+    text-align: center;
+    margin-right: 2rem;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.modal .btn-primary {
+    width: auto;
+    height: auto;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+}
+
+.form-control {
+    padding: 0.7rem 1rem;
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+}
+
+.form-control:focus {
+    border-color: #6c757d;
+    box-shadow: 0 0 0 0.25rem rgba(108, 117, 125, 0.25);
+}
+
+.datos-foto-container {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.avatar-container {
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    background-color: #f8f9fa;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #343a40;
+    border: 3px solid #dee2e6;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.datos-personales {
+    flex: 1;
+}
+
+.datos-personales p {
+    margin-bottom: 1rem;
+}
+
+.photo-container {
+    flex-shrink: 0;
+}
+
+.foto-alumno {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid #dee2e6;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Input de calificación */
+.form-control-lg {
+    font-size: 1.1rem;
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+}
+
+.form-control-lg:focus {
+    box-shadow: 0 0 0 0.3rem rgba(52, 58, 64, 0.2);
+}
+
+@media (max-width: 767px) {
+    .perfil-card .card-body {
+        padding: 1.5rem;
+    }
+    
+    .datos-foto-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .avatar-container {
+        margin-bottom: 1rem;
+    }
+}
