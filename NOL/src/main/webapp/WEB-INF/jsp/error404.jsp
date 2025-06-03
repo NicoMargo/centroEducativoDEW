@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./css/error404.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/error404.css">
 <jsp:include page="/includes/header.jsp" />
 
 <div class="container">
@@ -52,4 +52,4 @@
   </main>
 </div>
 
-<jsp:include page="/includes/footer.html" />
+<jsp:include page="/includes/footer.jsp" />

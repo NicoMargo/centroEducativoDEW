@@ -8,12 +8,12 @@
       <title>NOL DEW</title>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  	  <link rel="stylesheet" href="./css/perfilAlumno.css"/>
-  	  <link rel="stylesheet" href="./css/infoAsignatura.css">
-  	  <link rel="stylesheet" href="./css/login.css">
-  	  <link rel="stylesheet" href="./css/index.css">
-  	  <link rel="stylesheet" href="./css/profesor.css">
-  	  <link rel="stylesheet" href="./css/header.css">
+  	  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/perfilAlumno.css"/>
+  	  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/infoAsignatura.css">
+  	  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
+  	  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
+  	  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/profesor.css">
+  	  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
   </head>
   <body>
       <h1 class="fw-bold">NOTAS ONLINE</h1>

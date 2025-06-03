@@ -9,12 +9,12 @@
         <div class="error-icon">
           <i class="fas fa-lock "></i>
         </div>
-        <h1 class="fw-bold mb-3">Error 401</h1>
-        <h2 class="fs-4 mb-4">Acceso No Autorizado</h2>
+        <h1 class="fw-bold mb-3">Error 403</h1>
+        <h2 class="fs-4 mb-4">El acceso al recurso pedido ha sido denegado</h2>
 
         <div class="error-message p-4 bg-light rounded mb-4"
         	 style="border-left: 5px solid blue;">
-          <p class="mb-0">No tienes los permisos necesarios para acceder a esta página. Este error ocurre cuando intentas acceder a un recurso que requiere autenticación o credenciales que no has proporcionado o que son inválidas.</p>
+          <p class="mb-0">El acceso al recurso especificado ha sido prohibido. Este error ocurre cuando intentas acceder a un recurso que requiere autenticación o credenciales que no has proporcionado o que son inválidas.</p>
         </div>
 
         <div class="possible-causes p-4 bg-light rounded mb-4"

@@ -33,8 +33,20 @@
         </div>
       </div>
     </div>
-      </main>
+    	<aside class="mt-5">    
+			<div class="mt-4">
+				<h4 class="fs-5 mb-3 fw-bold"><i class="fas fa-star me-2"></i>Integrantes del equipo:</h4>
+				<ul class="list-group list-group-flush text-start mb-4">
+					<li class="list-group-item"><i class="fas fa-graduation-cap me-2 text-dark"></i>Alejandro Navarro Sala</li>
+					<li class="list-group-item"><i class="fas fa-graduation-cap text-dark"></i>Carmen Crespo Navarro</li>
+					<li class="list-group-item"><i class="fas fa-graduation-cap me-2 text-dark"></i>Antonio Laria Romero</li>
+					<li class="list-group-item"><i class="fas fa-graduation-cap text-dark"></i>Yahya Fares</li>
+					<li class="list-group-item"><i class="fas fa-graduation-cap text-dark"></i> Nicolas Margossian</li>
+				</ul>
+			</div>
+		</aside>
+	</main>
 </div>
  
   
-<jsp:include page="/includes/footer.html" />
+<jsp:include page="/includes/footer.jsp" />

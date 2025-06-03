@@ -1,8 +1,8 @@
-// src/main/java/dew/filters/LogsFilter.java
 package dew.filter;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
@@ -23,16 +23,14 @@ public class LogsFilter implements Filter {
             filterConfig.getInitParameter("loggingEnabled")
         );
 
-        // Si la ruta no es absoluta, la resolvemos contra el contexto web
-        if (!Paths.get(filePath).isAbsolute()) {
-            String real = filterConfig
-                .getServletContext()
-                .getRealPath(filePath);
-            filePath = real;
-        }
-
+        // 2) Resolución siempre relativa al contexto web
+        //    (getRealPath transforma "/WEB-INF/logs/app.log" en, p.ej.,
+        //     "/home/tomcat/webapps/miApp/WEB-INF/logs/app.log")
+        ServletContext ctx = filterConfig.getServletContext();
+        String realPath = ctx.getRealPath(filePath);
+        	
         try {
-            logFile = Paths.get(filePath);
+            logFile = Paths.get(realPath);
             Path parent = logFile.getParent();
             if (parent != null && !Files.exists(parent)) {
                 Files.createDirectories(parent);
@@ -40,8 +38,11 @@ public class LogsFilter implements Filter {
             if (!Files.exists(logFile)) {
                 Files.createFile(logFile);
             }
+            ctx.setAttribute("logFilePathResolved", realPath);
         } catch (IOException e) {
-            throw new ServletException("No se pudo inicializar el fichero de logs", e);
+            throw new ServletException(
+              "No se pudo inicializar el fichero de logs en " + realPath, e
+            );
         }
     }
 
@@ -58,26 +59,32 @@ public class LogsFilter implements Filter {
             String user      = req.getRemoteUser() != null ? req.getRemoteUser() : "-";
             String ip        = req.getRemoteAddr();
 
-            // Construimos la URL completa con query string
-            String uri       = req.getRequestURI();
-            String qs        = req.getQueryString();
+            // Construir URI completa con query string, si la hay
+            String uri = req.getRequestURI();
+            String qs  = req.getQueryString();
             if (qs != null && !qs.isEmpty()) {
                 uri += "?" + qs;
             }
 
-            String method    = req.getMethod();
+            String method = req.getMethod();
 
-            String entry = String.format("%s %s %s %s %s%n",
-                    timestamp, user, ip, uri, method);
+            String entry = String.format(
+                "%s %s %s %s %s%n",
+                timestamp, user, ip, uri, method
+            );
 
-            Files.write(logFile,
-                        entry.getBytes(StandardCharsets.UTF_8),
-                        StandardOpenOption.APPEND);
+            // 3) Añadir la línea al final del fichero
+            Files.write(
+                logFile,
+                entry.getBytes(StandardCharsets.UTF_8),
+                StandardOpenOption.APPEND
+            );
         }
 
         chain.doFilter(request, response);
     }
 
     @Override
-    public void destroy() { }
+    public void destroy() {
+    }
 }
