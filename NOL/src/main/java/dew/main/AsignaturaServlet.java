@@ -32,7 +32,6 @@ public class AsignaturaServlet extends HttpServlet {
         || s.getAttribute("apiKey") == null
         || s.getAttribute("sessionCookie") == null) {
       resp.sendError(HttpServletResponse.SC_UNAUTHORIZED, "No autenticado");
-      System.out.println("entre 1");
       return;
     }
 
@@ -43,11 +42,9 @@ public class AsignaturaServlet extends HttpServlet {
       resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Falta parámetro acrónimo");
       return;
     }
-    System.out.println(servletPath);
 
     if ("/asignatura".equals(servletPath)) {
       // → Mostrar la página JSP con detalles de la asignatura (y profesores)
-    	System.out.println("entre 1");
       Asignatura info = AsignaturaService.fetchOne(
         getServletContext(), s, acr
       );
@@ -56,7 +53,6 @@ public class AsignaturaServlet extends HttpServlet {
          .forward(req, resp);
 
     } else if ("/listaAlumnosPorAsignatura".equals(servletPath)) {
-    	System.out.println("entre 1");
       // → Responder con JSON: lista de alumnos+nota
       List<AsignaturaAlumno> alumnos =
           AsignaturaService.fetchAlumnosAsignatura(

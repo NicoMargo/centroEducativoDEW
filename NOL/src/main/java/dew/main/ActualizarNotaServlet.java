@@ -52,10 +52,10 @@ public class ActualizarNotaServlet extends HttpServlet {
 
     String dni       = jsonRequest.get("dni").getAsString();
     String acronimo  = jsonRequest.get("acronimo").getAsString();
-    String nota      = jsonRequest.get("nota").getAsString();
-
+    int nota = jsonRequest.get("nota").getAsNumber().intValue();
+    
     // 3) Montar la URL PUT /alumnos/{dni}/asignaturas/{acronimo}?key={apiKey}
-    String path = "/alumnos/" + dni + "/asignaturas/" + acronimo;
+    String path = "alumnos/" + dni + "/asignaturas/" + acronimo;
     String base = CentroClient.getBaseUrl();
     URL url = new URL(base + path + "?key=" + apiKey);
 
@@ -63,16 +63,15 @@ public class ActualizarNotaServlet extends HttpServlet {
     con.setRequestMethod("PUT");
     con.setRequestProperty("Content-Type", "application/json");
     // Incluir la cookie de sesión para que CentroEducativo reconozca la sesión
-    con.setRequestProperty("Cookie", "sessionCookie=" + sessionCookie);
+    con.setRequestProperty("Cookie", sessionCookie);
     con.setDoOutput(true);
 
-    // 4) Construir el body {"nota":"7.0"} usando JsonObject
-    JsonObject bodyJson = new JsonObject();
-    bodyJson.addProperty("nota", nota);
+
 
     try (BufferedWriter writer = new BufferedWriter(
             new OutputStreamWriter(con.getOutputStream(), "UTF-8"))) {
-      writer.write(bodyJson.toString());
+
+        writer.write(Integer.toString(nota));
     }
 
     // 5) Leer el código de respuesta
