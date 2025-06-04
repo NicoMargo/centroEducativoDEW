@@ -32,7 +32,7 @@
                step="0.1"
                placeholder="—"
         />
-        <div class="form-text">Al cambiar la nota se guardará automáticamente.</div>
+        <div class="form-text">Al cambiar la nota y presionar enter se guardará automáticamente. <br/> se puede cambiar de alumno con las flechas izquierda y derecha</div>
       </div>
 
       <!-- Flechas de navegación -->

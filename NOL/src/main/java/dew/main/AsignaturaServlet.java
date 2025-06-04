@@ -48,6 +48,13 @@ public class AsignaturaServlet extends HttpServlet {
       Asignatura info = AsignaturaService.fetchOne(
         getServletContext(), s, acr
       );
+      
+      //se agrega descripcion con dice el documento: Informaciones de relleno, como el 
+      //texto "Lorem ipsum" que debe ser insertado  por el servlet a modo de relleno.
+      
+      String descripcion = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+      info.setDescripcion(descripcion);
+      
       req.setAttribute("asignatura", info);
       req.getRequestDispatcher("/asignatura/infoAsignatura.jsp")
          .forward(req, resp);

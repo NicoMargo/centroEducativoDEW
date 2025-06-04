@@ -19,7 +19,7 @@ import java.net.URL;
 public class ActualizarNotaServlet extends HttpServlet {
 
   @Override
-  protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+  protected void doPut(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
 
     // 1) Verificar autenticación: que exista sesión y apiKey + sessionCookie (cookie)
