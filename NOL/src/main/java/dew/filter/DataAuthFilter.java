@@ -47,7 +47,9 @@ public class DataAuthFilter implements Filter {
       
       AuthResult auth = CentroClient.instance().login(user, pass);
       session.setAttribute("apiKey",        auth.getApiKey());
+     
       session.setAttribute("sessionCookie", auth.getSessionCookie());
+   
       session.setAttribute("dni",           user);
     }
     chain.doFilter(rq, rs);
