@@ -33,7 +33,6 @@
     <url-pattern>/profesor/*</url-pattern>
     <url-pattern>/inicio</url-pattern>
     <url-pattern>/asignatura/*</url-pattern>
-    <url-pattern>/asignaturas/*</url-pattern>
     <dispatcher>REQUEST</dispatcher>
   </filter-mapping>
   <welcome-file-list>
@@ -64,8 +63,6 @@
       <web-resource-name>Zona Asignaturas</web-resource-name>
       <url-pattern>/asignatura</url-pattern>
       <url-pattern>/asignatura/*</url-pattern>
-      <url-pattern>/asignaturas</url-pattern>
-      <url-pattern>/asignaturas/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>rolalu</role-name>
@@ -82,6 +79,19 @@
       <role-name>rolpro</role-name>
     </auth-constraint>
   </security-constraint>
+  
+    <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Zona AlumnoJson</web-resource-name>
+      <url-pattern>/alumnoJson</url-pattern>
+      <url-pattern>/alumnoJson/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>rolpro</role-name>
+    </auth-constraint>
+  </security-constraint>
+  
+  
   <login-config>
     <auth-method>FORM</auth-method>
     <form-login-config>

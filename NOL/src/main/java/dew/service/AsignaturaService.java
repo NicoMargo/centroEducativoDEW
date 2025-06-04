@@ -3,6 +3,7 @@ package dew.service;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import dew.models.Asignatura;
+import dew.models.AsignaturaAlumno;
 import dew.models.Profesor;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpSession;
@@ -44,4 +45,20 @@ public class AsignaturaService {
 
     return asign;
   }
+  
+  public static List<AsignaturaAlumno> fetchAlumnosAsignatura(
+	      ServletContext ctx, HttpSession ses, String acronimo) throws IOException {
+	    String apiKey        = (String) ses.getAttribute("apiKey");
+	    String sessionCookie = (String) ses.getAttribute("sessionCookie");
+
+	    // 1) GET /asignaturas/{acr}/alumnos
+	    String jsonAlumnos = CentroClient.instance()
+	        .getResource("asignaturas/" + acronimo + "/alumnos", apiKey, sessionCookie);
+
+	    // 2) Convertir JSON → List<AsignaturaAlumno>
+	    return GSON.fromJson(
+	      jsonAlumnos,
+	      new TypeToken<List<AsignaturaAlumno>>() {}.getType()
+	    );
+	  }
 }

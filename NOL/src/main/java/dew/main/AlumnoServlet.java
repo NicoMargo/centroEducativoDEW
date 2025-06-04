@@ -36,6 +36,7 @@ public class AlumnoServlet extends HttpServlet {
   private boolean checkAuthentication(HttpServletRequest req, HttpServletResponse resp)
       throws IOException {
     HttpSession session = req.getSession(false);
+    
     if (session == null ||
         session.getAttribute("apiKey") == null ||
         session.getAttribute("sessionCookie") == null) {
@@ -50,7 +51,9 @@ public class AlumnoServlet extends HttpServlet {
   private void showPerfil(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
     HttpSession session = req.getSession();
-    Alumno alumno = AlumnoService.fetchOne(getServletContext(), session);
+    String dni = (String) session.getAttribute("dni");
+
+    Alumno alumno = AlumnoService.fetchOne(getServletContext(), session, dni);
     req.setAttribute("alumno", alumno);
     req.getRequestDispatcher("/alumno/perfilAlumno.jsp")
        .forward(req, resp);
@@ -60,7 +63,9 @@ public class AlumnoServlet extends HttpServlet {
   private void showLista(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
     HttpSession session = req.getSession();
-    Alumno  alumno = AlumnoService.fetchOne(getServletContext(), session);
+    String dni = (String) session.getAttribute("dni");
+
+    Alumno  alumno = AlumnoService.fetchOne(getServletContext(), session, dni);
     req.setAttribute("alumnos", alumno);
     req.getRequestDispatcher("/alumno/listaAlumnos.jsp")
        .forward(req, resp);

@@ -76,5 +76,7 @@
       </div>
     </main>
   </div>
+<script src="${pageContext.request.contextPath}/js/perfilAlumno.js"></script>
+  
 
   <jsp:include page="/includes/footer.jsp"/>
