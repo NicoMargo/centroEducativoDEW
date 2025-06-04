@@ -91,7 +91,7 @@ echo
 
 echo "5) Asignando asignaturas a profesores..."
 declare -A asignaciones_profesores=(
-  ["23456733H"]="DEW"
+  ["23456733H"]="DEW DCU IAP"
   ["10293756L"]="DCU"
   ["06374291A"]="IAP"
   ["65748923M"]="DEW IAP"
