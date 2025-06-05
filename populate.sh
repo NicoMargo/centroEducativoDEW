@@ -23,11 +23,9 @@ echo
 
 echo "2) Añadiendo alumnos..."
 for alumno in \
-  '{"dni":"12345678W","nombre":"Pepe","apellidos":"Garcia Sanchez","password":"123456"}' \
-  '{"dni":"23456387R","nombre":"Maria","apellidos":"Fernandez Gómez","password":"123456"}' \
-  '{"dni":"34567891F","nombre":"Miguel","apellidos":"Hernandez Llopis","password":"123456"}' \
-  '{"dni":"93847525G","nombre":"Laura","apellidos":"Benitez Torres","password":"123456"}' \
-  '{"dni":"37264096W","nombre":"Minerva","apellidos":"Alonso Pérez","password":"123456"}'
+  '{"dni":"11111111A","nombre":"Nicolas","apellidos":"Margossian","password":"123456"}' \
+  '{"dni":"22222222A","nombre":"Carmen","apellidos":"Crespo Navarro","password":"123456"}' \
+  '{"dni":"33333333A","nombre":"Alejandro","apellidos":"Navarro Sala","password":"123456"}'
 do
   code=$(curl --silent --show-error --fail -w "%{http_code}" -o /dev/null \
     -X POST "${API_URL}/alumnos?key=${KEY}" \
@@ -44,10 +42,9 @@ echo
 
 echo "3) Añadiendo profesores (con contraseña genérica)..."
 for profesor in \
-  '{"dni":"23456733H","nombre":"Ramón","apellidos":"Garcia","password":"123456"}' \
-  '{"dni":"10293756L","nombre":"Pedro","apellidos":"Valderas","password":"123456"}' \
-  '{"dni":"06374291A","nombre":"Manoli","apellidos":"ALbert","password":"123456"}' \
-  '{"dni":"65748923M","nombre":"Joan","apellidos":"Fons","password":"123456"}'
+  '{"dni":"22222222Z","nombre":"Juan","apellidos":"Britos","password":"123456"}' \
+  '{"dni":"33333333Z","nombre":"Alejandro","apellidos":"De la fuente","password":"123456"}' \
+  '{"dni":"44444444Z","nombre":"Marcos","apellidos":"Trossero","password":"123456"}'
 do
   code=$(curl --silent --show-error --fail -w "%{http_code}" -o /dev/null \
     -X POST "${API_URL}/profesores?key=${KEY}" \
@@ -64,19 +61,17 @@ echo
 
 echo "4) Asignando asignaturas a alumnos..."
 declare -A asignaciones_alumnos=(
-  ["12345678W"]="DCU DEW IAP"
-  ["23456387R"]="DCU DEW"
-  ["34567891F"]="DCU IAP"
-  ["93847525G"]="IAP DEW"
-  ["37264096W"]=""
+  ["11111111A"]="DCU DEW IAP"
+  ["22222222A"]="DCU DEW"
+  ["33333333A"]="DCU IAP"
 )
+
 for dni in "${!asignaciones_alumnos[@]}"; do
   for asignatura in ${asignaciones_alumnos[$dni]}; do
-    json=$(printf '"%s"' "$asignatura")
     code=$(curl --silent --show-error --fail -w "%{http_code}" -o /dev/null \
       -X POST "${API_URL}/alumnos/${dni}/asignaturas?key=${KEY}" \
       -H "Content-Type: application/json" \
-      -d "$json" \
+      -d "$asignatura" \
       -b "$COOKIE_JAR")
     if (( code >= 200 && code < 300 )); then
       echo "✓ Asignatura $asignatura asignada a alumno $dni"
@@ -91,19 +86,19 @@ echo
 
 echo "5) Asignando asignaturas a profesores..."
 declare -A asignaciones_profesores=(
-  ["23456733H"]="DEW DCU IAP"
-  ["10293756L"]="DCU"
-  ["06374291A"]="IAP"
-  ["65748923M"]="DEW IAP"
+  ["22222222Z"]="DEW DCU IAP"
+  ["33333333Z"]="DCU"
+  ["44444444Z"]="IAP DEW"
 )
+
 for dni in "${!asignaciones_profesores[@]}"; do
   for asignatura in ${asignaciones_profesores[$dni]}; do
-    json=$(printf '"%s"' "$asignatura")
     code=$(curl --silent --show-error --fail -w "%{http_code}" -o /dev/null \
       -X POST "${API_URL}/profesores/${dni}/asignaturas?key=${KEY}" \
       -H "Content-Type: application/json" \
-      -d "$json" \
+      -d "$asignatura" \
       -b "$COOKIE_JAR")
+
     if (( code >= 200 && code < 300 )); then
       echo "✓ Asignatura $asignatura asignada a profesor $dni"
     elif (( code == 400 )); then
@@ -131,4 +126,64 @@ curl --silent --show-error --fail \
 echo
 echo
 
-echo "Script completado"
+
+echo "1) Haciendo login..."
+login_resp=$(curl --silent --show-error --fail \
+  -X POST "${API_URL}/login" \
+  -H "Content-Type: application/json" \
+  -d '{"dni":"33333333Z","password":"123456"}' \
+  -c "$COOKIE_JAR") || {
+    echo "Error en login." >&2
+    exit 1
+}
+KEY=$(printf '%s' "$login_resp" | tr -d '[:space:]')
+if [[ -z "$KEY" ]]; then
+  echo "Error: la KEY está vacía." >&2
+  exit 1
+fi
+echo "Login correcto. KEY=$KEY"
+echo
+
+
+
+echo "8) Asignando notas a todos los alumnos..."
+notas=(
+  "12345678W IAP 8"
+  "12345678W DCU 7"
+  "12345678W DEW 9"
+  "23456387R DCU 6"
+  "23456387R DEW 7"
+  "34567891F IAP 5"
+  "34567891F DCU 8"
+  "93847525G DEW 9"
+  "93847525G IAP 6"
+  "11111111A DCU 8"
+  "11111111A IAP 7"
+  "11111111A DEW 9"
+  "22222222A DCU 6"
+  "22222222A DEW 7"
+  "33333333A IAP 8"
+  "33333333A DCU 9"
+  # El alumno 37264096W no tiene asignaturas, así que no aparece aquí
+)
+
+for entry in "${notas[@]}"; do
+  read -r dni acronimo nota <<< "$entry"
+
+  # Enviamos la nota como un entero plano, sin comillas
+  http_code=$(curl --silent --show-error --fail -w "%{http_code}" -o /dev/null \
+    -v \
+    -X PUT "${API_URL}/alumnos/${dni}/asignaturas/${acronimo}?key=${KEY}" \
+    -H "Content-Type: application/json" \
+    -d "${nota}" \
+    -b "$COOKIE_JAR")
+
+  if (( http_code >= 200 && http_code < 300 )); then
+    echo "✓ Nota ${nota} asignada a ${acronimo} de alumno ${dni} (HTTP ${http_code})"
+  else
+    echo "✗ Error al asignar nota ${nota} a ${acronimo} de alumno ${dni} (HTTP ${http_code})"
+  fi
+done
+
+echo "Script completado."
+

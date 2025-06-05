@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tomcat-users>
+
+  <!-- Definición de roles disponibles -->
   <role rolename="rolalu"/>
   <role rolename="rolpro"/>
 
-  <!-- Usuarios alumnos (username = DNI, password = el que viene en la API REST) -->
   <user username="12345678W" password="123456" roles="rolalu"/>
   <user username="23456387R" password="123456" roles="rolalu"/>
   <user username="34567891F" password="123456" roles="rolalu"/>
   <user username="93847525G" password="123456" roles="rolalu"/>
   <user username="37264096W" password="123456" roles="rolalu"/>
+  <user username="11111111A" password="123456" roles="rolalu"/>
+  <user username="22222222A" password="123456" roles="rolalu"/>
+  <user username="33333333A" password="123456" roles="rolalu"/>
 
-   <!-- Usuarios profesores (username = DNI, password = el que viene en la API REST) -->
+
   <user username="23456733H" password="123456" roles="rolpro"/>
-</tomcat-users>	
+  <user username="10293756L" password="123456" roles="rolpro"/>
+  <user username="06374291A" password="123456" roles="rolpro"/>
+  <user username="65748923M" password="123456" roles="rolpro"/>
+  <user username="22222222Z" password="123456" roles="rolpro"/>
+  <user username="33333333Z" password="123456" roles="rolpro"/>
+  <user username="44444444Z" password="123456" roles="rolpro"/>
+
+</tomcat-users>
