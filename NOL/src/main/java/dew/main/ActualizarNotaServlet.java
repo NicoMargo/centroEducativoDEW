@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import dew.helper.InputValidator;
-
 
 /**
  * Servlet que recibe por POST un JSON con { "dni": "...", "acronimo": "...", "nota": "7.0" }
@@ -56,17 +54,13 @@ public class ActualizarNotaServlet extends HttpServlet {
     String acronimo  = jsonRequest.get("acronimo").getAsString();
     int nota = jsonRequest.get("nota").getAsNumber().intValue();
     
-    // Validar que 'nota' (int) esté entre 0 y 10:
-    if (!InputValidator.isValidGrade(nota)) {
-      resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "La nota debe estar entre 0 y 10.");
-      return;
-    }
-    
     // 3) Montar la URL PUT /alumnos/{dni}/asignaturas/{acronimo}?key={apiKey}
     String path = "alumnos/" + dni + "/asignaturas/" + acronimo;
     String base = CentroClient.getBaseUrl();
     URL url = new URL(base + path + "?key=" + apiKey);
 
+    
+    
     HttpURLConnection con = (HttpURLConnection) url.openConnection();
     con.setRequestMethod("PUT");
     con.setRequestProperty("Content-Type", "application/json");
