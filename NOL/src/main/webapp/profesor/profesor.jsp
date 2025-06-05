@@ -22,7 +22,7 @@
                  <strong>DNI:</strong> <%= profesor.getDni() %></p>
             </div>
             <div class="photo-container">
-              <img src="./img/<%= profesor.getDni() %>.webp" alt="Foto del profesor" id="fotoProfesor" class="foto-alumno" />
+              <img src="${pageContext.request.contextPath}/img/<%= profesor.getDni() %>.webp" alt="Foto del profesor" id="fotoProfesor" class="foto-alumno" />
             </div>
           </section>
 
