@@ -11,6 +11,10 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 
 public class DebugFilter implements Filter {
+  /**
+   * Intercepta cada petición HTTP, imprime en consola el método y URI para depuración,
+   * y luego continúa con el resto de filtros o el servlet destino.
+   */
   public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
         throws IOException, ServletException {
     HttpServletRequest r = (HttpServletRequest) req;

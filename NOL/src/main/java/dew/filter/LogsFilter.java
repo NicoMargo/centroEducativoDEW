@@ -16,6 +16,12 @@ public class LogsFilter implements Filter {
     private Path logFile;
     private boolean loggingEnabled;
 
+    /**
+     * Inicializa el filtro leyendo los parámetros de configuración:
+     * - logFilePath: ruta relativa al contexto donde se escribirá el fichero de logs.
+     * - loggingEnabled: si está activado o no el registro.
+     * Crea las carpetas necesarias y el fichero de logs si no existen.
+     */
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         String filePath = filterConfig.getInitParameter("logFilePath");
@@ -46,6 +52,12 @@ public class LogsFilter implements Filter {
         }
     }
 
+    /**
+     * Intercepta cada petición entrante. Si el registro está habilitado,
+     * construye una línea con la fecha, usuario, IP, URI (incluyendo query string)
+     * y método HTTP, y la añade al fichero de logs.
+     * Luego continúa con la cadena de filtros y servlets.
+     */
     @Override
     public void doFilter(ServletRequest request,
                          ServletResponse response,
@@ -84,6 +96,9 @@ public class LogsFilter implements Filter {
         chain.doFilter(request, response);
     }
 
+    /**
+     * Método llamado al destruir el filtro. Actualmente no realiza ninguna acción.
+     */
     @Override
     public void destroy() {
     }

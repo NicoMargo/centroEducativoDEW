@@ -11,6 +11,12 @@ import java.io.IOException;
 
 @WebServlet("/profesor")
 public class ProfesorServlet extends HttpServlet {
+  /**
+   * Maneja peticiones GET para mostrar la página principal de profesor.
+   * - Verifica si la sesión existe y contiene el DNI.
+   * - Si no, redirige al login con error.
+   * - Si existe, obtiene datos del profesor y los envía al JSP.
+   */
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
@@ -28,4 +34,3 @@ public class ProfesorServlet extends HttpServlet {
     req.getRequestDispatcher("/profesor/profesor.jsp").forward(req, resp);
   }
 }
-
