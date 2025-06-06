@@ -32,9 +32,7 @@ public class LogsFilter implements Filter {
      */
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        // 1) Leer parámetros de inicialización desde web.xml:
-        //    - logFilePath: ruta relativa (dentro de la webapp) al fichero de logs
-        //    - loggingEnabled: "true" o "false"
+
         String filePath = filterConfig.getInitParameter("logFilePath");
         loggingEnabled = Boolean.parseBoolean(
             filterConfig.getInitParameter("loggingEnabled")
@@ -42,8 +40,7 @@ public class LogsFilter implements Filter {
 
         // 2) Obtener ServletContext para convertir la ruta relativa en una ruta física real
         ServletContext ctx = filterConfig.getServletContext();
-        //    getRealPath convierte algo como "/WEB-INF/logs/app.log" en, por ejemplo,
-        //    "/opt/tomcat/webapps/miApp/WEB-INF/logs/app.log"
+
         String realPath = ctx.getRealPath(filePath);
 
         try {

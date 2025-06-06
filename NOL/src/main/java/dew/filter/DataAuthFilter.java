@@ -66,6 +66,5 @@ public class DataAuthFilter implements Filter {
 
   @Override
   public void destroy() {
-    // Ninguna limpieza específica requerida al destruir el filtro
   }
 }
