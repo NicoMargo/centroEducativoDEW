@@ -127,7 +127,7 @@ echo
 echo
 
 
-echo "1) Haciendo login..."
+echo "8) Haciendo login Profesor..."
 login_resp=$(curl --silent --show-error --fail \
   -X POST "${API_URL}/login" \
   -H "Content-Type: application/json" \
@@ -146,7 +146,7 @@ echo
 
 
 
-echo "8) Asignando notas a todos los alumnos..."
+echo "9) Asignando notas a todos los alumnos..."
 notas=(
   "12345678W IAP 8"
   "12345678W DCU 7"
@@ -171,8 +171,7 @@ for entry in "${notas[@]}"; do
   read -r dni acronimo nota <<< "$entry"
 
   # Enviamos la nota como un entero plano, sin comillas
-  http_code=$(curl --silent --show-error --fail -w "%{http_code}" -o /dev/null \
-    -v \
+  http_code=$(curl --silent --show-error --fail -w "%{http_code}" -o /dev/null \    
     -X PUT "${API_URL}/alumnos/${dni}/asignaturas/${acronimo}?key=${KEY}" \
     -H "Content-Type: application/json" \
     -d "${nota}" \
