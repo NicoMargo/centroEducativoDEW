@@ -60,7 +60,7 @@ const notaPromedioElem = document.getElementById('notaPromedio');
     const item = alumnosList[idx];
     // Mostrar DNI y nota inmediata
     dniAlumnoElem.textContent = item.alumno;
-    notaInput.value           = item.nota || '';
+	notaInput.value = item.nota ? String(parseInt(item.nota, 10)) : '';
 
     // Habilitar/deshabilitar botones de flecha
     prevBtn.disabled = (idx === 0);
@@ -174,14 +174,13 @@ const notaPromedioElem = document.getElementById('notaPromedio');
     .then(texto => {
       console.log('Nota actualizada:', texto);
       
-      // Mostrar mensaje solo si se especificó
-      if (mostrarMensaje) {
+      
         const mensajeExito = document.getElementById('mensajeExito');
         mensajeExito.classList.remove('d-none');
         setTimeout(() => {
           mensajeExito.classList.add('d-none');
-        }, 2000);
-      }
+        }, 2500);
+      
       
       // Recalcular y mostrar el promedio actualizado
       calcularYMostrarPromedio();

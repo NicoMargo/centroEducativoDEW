@@ -110,24 +110,10 @@ for dni in "${!asignaciones_profesores[@]}"; do
 done
 echo
 
-echo "6) Lista de alumnos con sus asignaturas:"
-curl --silent --show-error --fail \
-  -X GET "${API_URL}/alumnosyasignaturas?key=${KEY}" \
-  -b "$COOKIE_JAR" \
-  -H "Accept: application/json"
-echo
-echo
-
-echo "7) Lista de profesores:"
-curl --silent --show-error --fail \
-  -X GET "${API_URL}/profesores?key=${KEY}" \
-  -b "$COOKIE_JAR" \
-  -H "Accept: application/json"
-echo
-echo
 
 
-echo "8) Haciendo login Profesor..."
+
+echo "6) Haciendo login Profesor..."
 login_resp=$(curl --silent --show-error --fail \
   -X POST "${API_URL}/login" \
   -H "Content-Type: application/json" \
@@ -146,7 +132,7 @@ echo
 
 
 
-echo "9) Asignando notas a todos los alumnos..."
+echo "7) Asignando notas a todos los alumnos..."
 notas=(
   "12345678W IAP 8"
   "12345678W DCU 7"
@@ -171,7 +157,7 @@ for entry in "${notas[@]}"; do
   read -r dni acronimo nota <<< "$entry"
 
   # Enviamos la nota como un entero plano, sin comillas
-  http_code=$(curl --silent --show-error --fail -w "%{http_code}" -o /dev/null \    
+  http_code=$(curl --silent --show-error --fail -w "%{http_code}" -o /dev/null \
     -X PUT "${API_URL}/alumnos/${dni}/asignaturas/${acronimo}?key=${KEY}" \
     -H "Content-Type: application/json" \
     -d "${nota}" \
@@ -183,6 +169,24 @@ for entry in "${notas[@]}"; do
     echo "✗ Error al asignar nota ${nota} a ${acronimo} de alumno ${dni} (HTTP ${http_code})"
   fi
 done
+
+echo
+
+echo "8) Lista de alumnos con sus asignaturas:"
+curl --silent --show-error --fail \
+  -X GET "${API_URL}/alumnosyasignaturas?key=${KEY}" \
+  -b "$COOKIE_JAR" \
+  -H "Accept: application/json"
+echo
+echo
+
+echo "9) Lista de profesores:"
+curl --silent --show-error --fail \
+  -X GET "${API_URL}/profesores?key=${KEY}" \
+  -b "$COOKIE_JAR" \
+  -H "Accept: application/json"
+echo
+echo
 
 echo "Script completado."
 
