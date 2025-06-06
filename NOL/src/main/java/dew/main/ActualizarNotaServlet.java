@@ -1,6 +1,8 @@
 package dew.main;
 
 import com.google.gson.JsonObject;
+
+import dew.helper.InputValidator;
 import dew.service.CentroClient;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -57,13 +59,18 @@ public class ActualizarNotaServlet extends HttpServlet {
     String dni       = jsonRequest.get("dni").getAsString();
     String acronimo  = jsonRequest.get("acronimo").getAsString();
     int nota = jsonRequest.get("nota").getAsNumber().intValue();
-
+    
+    if(!InputValidator.isValidGrade(nota)) {
+	  resp.sendError(HttpServletResponse.SC_BAD_REQUEST,
+              "Nota inválida: debe ser un número entero entre 1 y 10");
+	  return;
+    }
+    
     // 3) Construir la URL para la petición PUT a CentroEducativo:
     //    PUT /alumnos/{dni}/asignaturas/{acronimo}?key={apiKey}
     String path = "alumnos/" + dni + "/asignaturas/" + acronimo;
     String base = CentroClient.getBaseUrl();
     URL url = new URL(base + path + "?key=" + apiKey);
-
 
     // 4) Abrir conexión HTTP y configurar cabeceras
 

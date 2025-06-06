@@ -17,7 +17,7 @@
     
     <!-- Nota promedio -->
       <div class="bg-light p-2 rounded mb-4">
-        <span class="fw-semibold">Nota promedio:</span>
+        <span class="fw-semibold">Nota promedio de la asignatura:</span>
         <span id="notaPromedio" class="ms-2 fs-5 fw-bold">-</span>
       </div>
 

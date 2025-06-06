@@ -105,7 +105,6 @@ public class InputValidator {
 
      /**
      * Valida que la nota (entero) esté en el rango permitido [0..10].
-     * @param nota valor entero de la nota
      * @return true si nota ≥ 0 y ≤ 10; false en cualquier otro caso
      */
     public static boolean isValidGrade(int nota) {
