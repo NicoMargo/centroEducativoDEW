@@ -15,11 +15,14 @@
                 Alumno alumno = (Alumno) request.getAttribute("alumno");
               %>
               <p><i class="fas fa-user me-2"></i>
-                 <strong>Nombre:</strong> ${alumno.nombre}</p>
-              <p><i class="fas fa-user-tag me-2"></i>
-                 <strong>Apellidos:</strong> ${alumno.apellidos}</p>
-              <p><i class="fas fa-id-card me-2"></i>
-                 <strong>DNI:</strong> ${alumno.dni}</p>
+   					<strong>Nombre:</strong> <span id="nombre">${alumno.nombre}</span></p>
+
+				<p><i class="fas fa-user-tag me-2"></i>
+				   <strong>Apellidos:</strong> <span id="apellidos">${alumno.apellidos}</span></p>
+				
+				<p><i class="fas fa-id-card me-2"></i>
+				   <strong>DNI:</strong> <span id="dni">${alumno.dni}</span></p>
+              
             </div>
             <div class="photo-container">
                  <img src="${pageContext.request.contextPath}/img/${alumno.dni}.webp" alt="Foto del alumno" id="fotoAlumno" class="foto-alumno" />
@@ -40,35 +43,38 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <%
-                    List<Asignatura> lista = alumno.getAsignaturas();
-                    if (lista != null && !lista.isEmpty()) {
-                      for (Asignatura asig : lista) {
-                  %>
-                  <tr>
-                    <td><%= asig.getAcronimo() %></td>
-                    <td>
-                      <%
-                        String nota = asig.getNota();
-                        out.print((nota == null || nota.isEmpty()) ? "—" : nota);
-                      %>
-                    </td>
-                    <td class="text-center">
-                      <a class="btn btn-sm btn-primary"
-                         href="<%= request.getContextPath() %>/asignatura?acronimo=<%= asig.getAcronimo() %>">
-                        Ver
-                      </a>
-                    </td>
-                  </tr>
-                  <%
-                      }
-                    } else {
-                  %>
-                  <tr>
-                    <td colspan="3" class="text-center">No hay asignaturas</td>
-                  </tr>
-                  <% } %>
-                </tbody>
+				  <%
+				    List<Asignatura> lista = alumno.getAsignaturas();
+				    if (lista != null && !lista.isEmpty()) {
+				      int i = 0;
+				      for (Asignatura asig : lista) {
+				  %>
+				  <tr>
+				    <td id="asignatura-<%= i %>"><%= asig.getAcronimo() %></td>
+				    <td id="nota-<%= i %>">
+				      <%
+				        String nota = asig.getNota();
+				        out.print((nota == null || nota.isEmpty()) ? "—" : nota);
+				      %>
+				    </td>
+				    <td class="text-center">
+				      <a class="btn btn-sm btn-primary"
+				         href="<%= request.getContextPath() %>/asignatura?acronimo=<%= asig.getAcronimo() %>">
+				        Ver
+				      </a>
+				    </td>
+				  </tr>
+				  <%
+				        i++;
+				      }
+				    } else {
+				  %>
+				  <tr>
+				    <td colspan="3" class="text-center">No hay asignaturas</td>
+				  </tr>
+				  <% } %>
+				</tbody>
+                
               </table>
             </div>
           </section>

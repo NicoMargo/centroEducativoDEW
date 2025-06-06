@@ -1,64 +1,54 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const userSession = JSON.parse(localStorage.getItem('userSession') || 'null');
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const dni = urlParams.get('dni') || (userSession ? userSession.dni : '12345678A');
-
-  const alumno = {
-    nombre: "Ana María",
-    apellidos: "García López",
-    dni: dni,
+  var alumno = {
+    nombre: document.getElementById('nombre') ? document.getElementById('nombre').textContent.trim() : '',
+    apellidos: document.getElementById('apellidos') ? document.getElementById('apellidos').textContent.trim() : '',
+    dni: document.getElementById('dni') ? document.getElementById('dni').textContent.trim() : '',
     fotoSrc: document.getElementById('fotoAlumno') ? document.getElementById('fotoAlumno').src : ''
   };
 
-  if (document.getElementById('nombre')) document.getElementById('nombre').textContent = alumno.nombre;
-  if (document.getElementById('apellidos')) document.getElementById('apellidos').textContent = alumno.apellidos;
-  if (document.getElementById('dni')) document.getElementById('dni').textContent = alumno.dni;
+  var asignaturas = [];
+  var filas = document.querySelectorAll('table tbody tr');
 
-  const asignaturas = [
-    { nombre: "Desarrollo Web", acronimo: "DEW", nota: "8.5" },
-    { nombre: "Interfaces Web", acronimo: "DIW", nota: "9.2" },
-    { nombre: "Despliegue de Aplicaciones", acronimo: "DAW", nota: "7.8" }
-  ];
+  for (var i = 0; i < filas.length; i++) {
+    var celdas = filas[i].getElementsByTagName('td');
 
-  mostrarAsignaturas(asignaturas);
+    if (celdas.length >= 2 && filas[i].textContent.indexOf('No hay asignaturas') === -1) {
+      var textoAsignatura = celdas[0].textContent.trim(); // ej: "DEW - Desarrollo Web"
+      var nota = celdas[1].textContent.trim();
 
-  const btn = document.getElementById('btnCertificado');
+      // Separar acrónimo y nombre si están separados por " - "
+      var acronimo = '';
+      var nombreAsig = '';
+
+      if (textoAsignatura.indexOf(' - ') !== -1) {
+        var partes = textoAsignatura.split(' - ');
+        acronimo = partes[0].trim();
+        nombreAsig = partes[1].trim();
+      } else {
+        acronimo = textoAsignatura;
+        nombreAsig = textoAsignatura;
+      }
+
+      // Evitar nulos por seguridad
+      asignaturas.push({
+        acronimo: acronimo || '',
+        nombre: nombreAsig || acronimo,
+        nota: nota || '—'
+      });
+    }
+  }
+
+  var btn = document.getElementById('btnCertificado');
   if (btn) {
     btn.addEventListener('click', function () {
-      const fecha = new Date().toLocaleDateString('es-ES');
-      const html = generarHTMLCertificado(alumno, fecha, asignaturas);
-      const nuevaVentana = window.open('', '_blank');
+      var fecha = new Date().toLocaleDateString('es-ES');
+      var html = generarHTMLCertificado(alumno, fecha, asignaturas);
+      var nuevaVentana = window.open('', '_blank');
       nuevaVentana.document.write(html);
       nuevaVentana.document.close();
     });
   }
 });
-
-function mostrarAsignaturas(asignaturas) {
-  const asignaturasBody = document.getElementById('asignaturasBody');
-  if (!asignaturasBody) return;
-
-  asignaturasBody.innerHTML = '';
-
-  if (asignaturas.length === 0) {
-    asignaturasBody.innerHTML = '<tr><td colspan="3" class="text-center">No hay asignaturas matriculadas</td></tr>';
-    return;
-  }
-
-  asignaturas.forEach(function (a) {
-    const row = document.createElement('tr');
-    row.innerHTML =
-      '<td>' + a.nombre + ' (' + a.acronimo + ')</td>' +
-      '<td>' + a.nota + '</td>' +
-      '<td class="text-center">' +
-        '<button class="btn btn-secondary consultar-btn py-0 px-2" style="font-size: 0.8rem;" data-acronimo="' + a.acronimo + '">' +
-          '<i class="fas fa-search me-1"></i>Consultar' +
-        '</button>' +
-      '</td>';
-    asignaturasBody.appendChild(row);
-  });
-}
 
 function generarHTMLCertificado(alumno, fecha, asignaturas) {
   var folder = location.pathname.split('/')[1];
@@ -68,7 +58,6 @@ function generarHTMLCertificado(alumno, fecha, asignaturas) {
   for (var i = 0; i < asignaturas.length; i++) {
     tabla += '<tr>' +
       '<td>' + asignaturas[i].acronimo + '</td>' +
-      '<td>' + asignaturas[i].nombre + '</td>' +
       '<td>' + asignaturas[i].nota + '</td>' +
     '</tr>';
   }
@@ -95,13 +84,10 @@ function generarHTMLCertificado(alumno, fecha, asignaturas) {
           '<thead>' +
             '<tr>' +
               '<th style="padding:8px;">Acrónimo</th>' +
-              '<th style="padding:8px;">Nombre</th>' +
               '<th style="padding:8px;">Nota</th>' +
             '</tr>' +
           '</thead>' +
-          '<tbody>' +
-            tabla +
-          '</tbody>' +
+          '<tbody>' + tabla + '</tbody>' +
         '</table>' +
         '<div class="firma">' +
           'Valencia, ' + fecha + '<br><br>' +
@@ -109,9 +95,7 @@ function generarHTMLCertificado(alumno, fecha, asignaturas) {
           'Dirección del Centro Educativo' +
         '</div>' +
       '</div>' +
-      '<script>' +
-        'window.onload = function() { window.print(); };' +
-      '<\/script>' +
+      '<script>window.onload = function() { window.print(); }<\/script>' +
     '</body>' +
     '</html>';
 }
