@@ -106,7 +106,7 @@ public class LogsFilter implements Filter {
             String method = req.getMethod();
 
             // 6) Formatear la línea de log (campos separados por espacios, con salto de línea al final)
-            //    Ejemplo: "2025-06-05T14:23:45.123 usuario 192.168.1.10 /miApp/alumno GET"
+            //    Ejemplo: "2025-06-05T14:23:45.123 usuario 192.168.1.10 /NOL/alumno GET"
             String entry = String.format(
                 "%s %s %s %s %s%n",
                 timestamp, user, ip, uri, method
