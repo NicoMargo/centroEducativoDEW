@@ -14,6 +14,12 @@
   <!-- Card para un solo alumno -->
   <div class="card mx-auto" style="max-width: 500px;">
     <div class="card-body text-center">
+    
+    <!-- Nota promedio -->
+      <div class="bg-light p-2 rounded mb-4">
+        <span class="fw-semibold">Nota promedio:</span>
+        <span id="notaPromedio" class="ms-2 fs-5 fw-bold">-</span>
+      </div>
 
       <!-- DNI del alumno en grande -->
 	    <h3 id="dniAlumno" class="card-title mb-3">–</h3>
@@ -29,10 +35,14 @@
                class="form-control form-control-lg text-center"
                min="0"
                max="10"
-               step="0.1"
+               step="1"
                placeholder="—"
         />
         <div class="form-text">Al cambiar la nota y presionar enter o salir del input se guardará automáticamente. <br/> se puede cambiar de alumno con las flechas izquierda y derecha</div>
+      </div>
+      
+      <div id="mensajeExito" class="alert alert-success mx-3 mb-3 d-none">
+                    <i class="fas fa-check-circle me-2"></i> La nota ha sido modificada correctamente.
       </div>
 
       <!-- Flechas de navegación -->

@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const notaInput        = document.getElementById('notaInput');
   const prevBtn          = document.getElementById('prevBtn');
   const nextBtn          = document.getElementById('nextBtn');
+const notaPromedioElem = document.getElementById('notaPromedio');
 
   let alumnosList   = [];   // Array de objetos { alumno: "DNI", nota: "...", nombre?, apellidos?, foto? }
   let currentIndex  = 0;    // Índice del alumno mostrado actualmente
@@ -47,6 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Mostrar el primer alumno
       currentIndex = 0;
       mostrarAlumno(currentIndex);
+      calcularYMostrarPromedio();
     })
     .catch(err => {
       console.error('Error al cargar lista de alumnos:', err);
@@ -106,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   }
 
-  // 6) Eventos “clic” de flechas
+  // 6) Eventos "clic" de flechas
   prevBtn.addEventListener('click', () => {
     if (currentIndex > 0) {
       currentIndex--;
@@ -140,9 +142,9 @@ document.addEventListener('DOMContentLoaded', function() {
       e.preventDefault();
     }
   });
-
-  // 7) Cuando cambia la nota, enviamos el POST para actualizarla
-  notaInput.addEventListener('change', () => {
+  
+  // Función para actualizar la nota
+  function actualizarNota(mostrarMensaje = false) {
     const nuevaNota = parseFloat(notaInput.value);
     if (isNaN(nuevaNota) || nuevaNota < 0 || nuevaNota > 10) {
       alert('Ingrese una calificación válida entre 0 y 10.');
@@ -171,11 +173,63 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .then(texto => {
       console.log('Nota actualizada:', texto);
+      
+      // Mostrar mensaje solo si se especificó
+      if (mostrarMensaje) {
+        const mensajeExito = document.getElementById('mensajeExito');
+        mensajeExito.classList.remove('d-none');
+        setTimeout(() => {
+          mensajeExito.classList.add('d-none');
+        }, 2000);
+      }
+      
+      // Recalcular y mostrar el promedio actualizado
+      calcularYMostrarPromedio();
     })
     .catch(err => {
       console.error('Error al actualizar nota:', err);
       alert('No se pudo guardar la nota en el servidor.');
       mostrarAlumno(currentIndex);
     });
+  }
+  
+  // 7) Cuando cambia la nota (al perder el foco), guardamos sin mensaje
+  notaInput.addEventListener('change', () => {
+    actualizarNota(false); // No mostrar mensaje
   });
+  
+  // Cuando presiona Enter, guardamos con mensaje
+  notaInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      actualizarNota(true); // Mostrar mensaje
+    }
+  });
+
+  // Función para calcular y mostrar la nota promedio
+  function calcularYMostrarPromedio() {
+    if (alumnosList.length === 0) {
+      notaPromedioElem.textContent = '-';
+      return;
+    }
+    
+    let totalNotas = 0;
+    let alumnosConNota = 0;
+    
+    // Calcular la suma total de notas
+    alumnosList.forEach(alumno => {
+      if (alumno.nota && !isNaN(parseFloat(alumno.nota))) {
+        totalNotas += parseFloat(alumno.nota);
+        alumnosConNota++;
+      }
+    });
+    
+    if (alumnosConNota === 0) {
+      notaPromedioElem.textContent = '-';
+    } else {
+      // Calcular el promedio usando el total de alumnos
+      const promedio = totalNotas / alumnosList.length;
+      notaPromedioElem.textContent = promedio.toFixed(1);
+    }
+  }
 });
