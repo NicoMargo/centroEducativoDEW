@@ -1,6 +1,6 @@
 @page {
   size: A4;
-  margin: 2cm;
+  margin: 0cm;
 }
 
 body {
@@ -9,6 +9,7 @@ body {
   color: #000;
   margin: 0;
   padding: 0;
+  margin-top: 2cm;
 }
 
 .cert-container {
