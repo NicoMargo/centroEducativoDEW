@@ -40,7 +40,7 @@
         </div>
 
         <div class="mt-4 d-flex justify-content-center">
-          <a href="./" class="btn btn-outline-secondary">
+          <a href="${pageContext.request.contextPath}" class="btn btn-outline-secondary">
             <i class="fas fa-home me-2"></i>Volver al Inicio
           </a>
         </div>

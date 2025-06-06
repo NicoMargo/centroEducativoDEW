@@ -22,7 +22,7 @@
                  <strong>DNI:</strong> ${alumno.dni}</p>
             </div>
             <div class="photo-container">
-                 <img src="./img/${alumno.dni}.webp" alt="Foto del alumno" id="fotoAlumno" class="foto-alumno" />
+                 <img src="${pageContext.request.contextPath}/img/${alumno.dni}.webp" alt="Foto del alumno" id="fotoAlumno" class="foto-alumno" />
             </div>
           </section>
 

@@ -15,6 +15,7 @@ public class Asignatura {
   private String nombre;
   private int curso;
   private String cuatrimestre;
+  private String descripcion;
   private double creditos;
   private List<Profesor> profesores;
 
@@ -34,6 +35,9 @@ public class Asignatura {
 
   public String getCuatrimestre()  { return cuatrimestre; }
   public void setCuatrimestre(String c) { this.cuatrimestre = c; }
+  
+  public String getDescripcion()  { return descripcion; }
+  public void setDescripcion(String c) { this.descripcion = c; }
 
   public double getCreditos()      { return creditos; }
   public void setCreditos(double c){ this.creditos = c; }

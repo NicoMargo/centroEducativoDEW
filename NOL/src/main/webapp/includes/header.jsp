@@ -21,7 +21,7 @@
       <h2 class="fw-bold">GESTION DE ASIGNATURAS</h2>
       
       <div class="top-buttons d-flex gap-2">
-    <a href="index.jsp" class="btn btn-dark shadow-sm">
+    <a href="${pageContext.request.contextPath}" class="btn btn-dark shadow-sm">
         <i class="fas fa-home me-2"></i>Inicio
     </a>
 

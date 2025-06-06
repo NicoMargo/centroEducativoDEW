@@ -16,6 +16,7 @@
             <li><strong>Curso:</strong> ${asignatura.curso}</li>
             <li><strong>Cuatrimestre:</strong> ${asignatura.cuatrimestre}</li>
             <li><strong>Créditos:</strong> ${asignatura.creditos}</li>
+            <li><strong>Descripcion:</strong> ${asignatura.descripcion}</li>
           </ul>
         </div>
         <section>

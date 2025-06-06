@@ -38,6 +38,8 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  
+  
   <security-constraint>
     <web-resource-collection>
       <web-resource-name>Zona Alumno</web-resource-name>
@@ -48,16 +50,25 @@
       <role-name>rolalu</role-name>
     </auth-constraint>
   </security-constraint>
+  
+  
   <security-constraint>
     <web-resource-collection>
       <web-resource-name>Zona Profesor</web-resource-name>
       <url-pattern>/profesor</url-pattern>
       <url-pattern>/profesor/*</url-pattern>
+      <url-pattern>/alumnoJson</url-pattern>
+      <url-pattern>/alumnoJson/*</url-pattern>
+      <url-pattern>/actualizarNotaPorAsignatura</url-pattern>
+      <url-pattern>/actualizarNotaPorAsignatura/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>rolpro</role-name>
     </auth-constraint>
   </security-constraint>
+  
+  
+  
   <security-constraint>
     <web-resource-collection>
       <web-resource-name>Zona Asignaturas</web-resource-name>
@@ -69,28 +80,8 @@
       <role-name>rolpro</role-name>
     </auth-constraint>
   </security-constraint>
-  <security-constraint>
-    <web-resource-collection>
-      <web-resource-name>Zona Inicio</web-resource-name>
-      <url-pattern>/inicio</url-pattern>
-    </web-resource-collection>
-    <auth-constraint>
-      <role-name>rolalu</role-name>
-      <role-name>rolpro</role-name>
-    </auth-constraint>
-  </security-constraint>
   
-    <security-constraint>
-    <web-resource-collection>
-      <web-resource-name>Zona AlumnoJson</web-resource-name>
-      <url-pattern>/alumnoJson</url-pattern>
-      <url-pattern>/alumnoJson/*</url-pattern>
-    </web-resource-collection>
-    <auth-constraint>
-      <role-name>rolpro</role-name>
-    </auth-constraint>
-  </security-constraint>
-  
+
   
   <login-config>
     <auth-method>FORM</auth-method>
