@@ -74,6 +74,12 @@
           </section>
         </div>
       </div>
+      <!-- Botón para imprimir certificado -->
+		<div class="text-center mt-4">
+  			<button id="btnCertificado" class="btn btn-success">
+    		<i class="fas fa-print me-1"></i> Imprimir Certificado
+  			</button>
+		</div>
     </main>
   </div>
 <script src="${pageContext.request.contextPath}/js/perfilAlumno.js"></script>
