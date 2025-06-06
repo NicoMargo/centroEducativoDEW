@@ -1,66 +1,101 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const userSession = JSON.parse(localStorage.getItem('userSession') || 'null');
-
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const dni = urlParams.get('dni') || (userSession ? userSession.dni : '12345678A');
-
-  const alumnoEjemplo = {
-    nombre: "Ana María",
-    apellidos: "García López",
-    dni: dni
+document.addEventListener('DOMContentLoaded', function () {
+  var alumno = {
+    nombre: document.getElementById('nombre') ? document.getElementById('nombre').textContent.trim() : '',
+    apellidos: document.getElementById('apellidos') ? document.getElementById('apellidos').textContent.trim() : '',
+    dni: document.getElementById('dni') ? document.getElementById('dni').textContent.trim() : '',
+    fotoSrc: document.getElementById('fotoAlumno') ? document.getElementById('fotoAlumno').src : ''
   };
 
-  document.getElementById('nombre').textContent = alumnoEjemplo.nombre;
-  document.getElementById('apellidos').textContent = alumnoEjemplo.apellidos;
-  document.getElementById('dni').textContent = alumnoEjemplo.dni;
+  var asignaturas = [];
+  var filas = document.querySelectorAll('table tbody tr');
 
-  const asignaturasEjemplo = [
-    { 
-      nombre: "Desarrollo Web", 
-      acronimo: "DEW",
-      profesor: { nombre: "Carlos", apellidos: "Rodríguez Martín" }
-    },
-    { 
-      nombre: "Interfaces Web", 
-      acronimo: "DIW",
-      profesor: { nombre: "María", apellidos: "Sánchez López" }
-    },
-    { 
-      nombre: "Despliegue de Aplicaciones", 
-      acronimo: "DAW",
-      profesor: { nombre: "Juan", apellidos: "Pérez García" }
+  for (var i = 0; i < filas.length; i++) {
+    var celdas = filas[i].getElementsByTagName('td');
+
+    if (celdas.length >= 2 && filas[i].textContent.indexOf('No hay asignaturas') === -1) {
+      var textoAsignatura = celdas[0].textContent.trim(); // ej: "DEW - Desarrollo Web"
+      var nota = celdas[1].textContent.trim();
+
+      // Separar acrónimo y nombre si están separados por " - "
+      var acronimo = '';
+      var nombreAsig = '';
+
+      if (textoAsignatura.indexOf(' - ') !== -1) {
+        var partes = textoAsignatura.split(' - ');
+        acronimo = partes[0].trim();
+        nombreAsig = partes[1].trim();
+      } else {
+        acronimo = textoAsignatura;
+        nombreAsig = textoAsignatura;
+      }
+
+      // Evitar nulos por seguridad
+      asignaturas.push({
+        acronimo: acronimo || '',
+        nombre: nombreAsig || acronimo,
+        nota: nota || '—'
+      });
     }
-  ];
-  mostrarAsignaturas(asignaturasEjemplo);
-});
-
-// Función para mostrar asignaturas
-function mostrarAsignaturas(asignaturas) {
-  const asignaturasBody = document.getElementById('asignaturasBody');
-  asignaturasBody.innerHTML = '';
-
-  if (!asignaturas || asignaturas.length === 0) {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td colspan="3" class="text-center">No hay asignaturas matriculadas</td>
-    `;
-    asignaturasBody.appendChild(row);
-    return;
   }
 
-  asignaturas.forEach(asignatura => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${asignatura.nombre} (${asignatura.acronimo})</td>
-      <td>${asignatura.profesor ? `${asignatura.profesor.nombre} ${asignatura.profesor.apellidos}` : 'Sin asignar'}</td>
-      <td class="text-center">
-        <button class="btn btn-secondary consultar-btn py-0 px-2" style="font-size: 0.8rem;" data-acronimo="${asignatura.acronimo}">
-          <i class="fas fa-search me-1"></i>Consultar
-        </button>
-      </td>
-    `;
-    asignaturasBody.appendChild(row);
+  var btn = document.getElementById('btnCertificado');
+  if (btn) {
+    btn.addEventListener('click', function () {
+      var fecha = new Date().toLocaleDateString('es-ES');
+      var html = generarHTMLCertificado(alumno, fecha, asignaturas);
+      var nuevaVentana = window.open('', '_blank');
+      nuevaVentana.document.write(html);
+      nuevaVentana.document.close();
+    });
+  }
+});
 
-  });
+function generarHTMLCertificado(alumno, fecha, asignaturas) {
+  var folder = location.pathname.split('/')[1];
+  var pathBase = folder ? '/' + folder : '';
+
+  var tabla = '';
+  for (var i = 0; i < asignaturas.length; i++) {
+    tabla += '<tr>' +
+      '<td>' + asignaturas[i].acronimo + '</td>' +
+      '<td>' + asignaturas[i].nota + '</td>' +
+    '</tr>';
+  }
+
+  return '' +
+    '<!DOCTYPE html>' +
+    '<html lang="es">' +
+    '<head>' +
+      '<meta charset="UTF-8">' +
+      '<title>Certificado de Estudios</title>' +
+      '<link rel="stylesheet" href="' + pathBase + '/css/certificado.css">' +
+    '</head>' +
+    '<body>' +
+      '<div class="cert-container">' +
+        '<h1>Certificado de Estudios</h1>' +
+        '<img src="' + alumno.fotoSrc + '" alt="Foto del Alumno" class="foto" />' +
+        '<div class="cert-info">' +
+          'Se certifica que el/la alumno/a <span class="bold">' + alumno.nombre + ' ' + alumno.apellidos + '</span>, ' +
+          'con documento nacional de identidad <span class="bold">' + alumno.dni + '</span>, ha cursado ' +
+          'satisfactoriamente sus estudios en esta institución educativa.' +
+        '</div>' +
+        '<h2 style="margin-top:2cm;">Asignaturas Cursadas</h2>' +
+        '<table style="width:100%; border-collapse:collapse; margin-top:1cm;" border="1">' +
+          '<thead>' +
+            '<tr>' +
+              '<th style="padding:8px;">Acrónimo</th>' +
+              '<th style="padding:8px;">Nota</th>' +
+            '</tr>' +
+          '</thead>' +
+          '<tbody>' + tabla + '</tbody>' +
+        '</table>' +
+        '<div class="firma">' +
+          'Valencia, ' + fecha + '<br><br>' +
+          '___________________________<br>' +
+          'Dirección del Centro Educativo' +
+        '</div>' +
+      '</div>' +
+      '<script>window.onload = function() { window.print(); }<\/script>' +
+    '</body>' +
+    '</html>';
 }
